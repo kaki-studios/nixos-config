@@ -9,6 +9,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/nvidia.nix
+      ../../modules/fonts.nix
+      ../../modules/niri.nix
+      ../../modules/common.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -78,6 +81,7 @@
      xdg-desktop-portal
      xdg-desktop-portal-wlr
      kitty
+     zsh
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -123,22 +127,6 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
   # TODO move this into modules etc. for it to be composable
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-  services.displayManager.sessionPackages = [
-    pkgs.niri
-  ];
-  programs.niri.enable = true;
-  services.dbus.enable = true;
-  xdg.portal = {
-   enable = true;
-   wlr.enable = true;
-  };
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
 
