@@ -34,5 +34,10 @@
   programs.kitty = {
     enable = true;
     enableGitIntegration = true;
+    font.name = "JetBrainsMono Nerd Font Mono";
+    themeFile = "Catppuccin-Mocha";
+    settings = {
+      background_opacity = 0.75;
+    };
   };
 }
