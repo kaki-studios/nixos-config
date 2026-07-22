@@ -11,12 +11,13 @@
       ../../modules/nvidia.nix
       ../../modules/fonts.nix
       ../../modules/niri.nix
-      ../../modules/common.nix
+      ../../modules/shell.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = null; #indefinitely
 
   networking.hostName = "nixos-pc"; # Define your hostname.
 
