@@ -2,22 +2,27 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/nvidia.nix
-      ../../modules/fonts.nix
-      ../../modules/niri.nix
-      ../../modules/shell.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/nvidia.nix
+    ../../modules/fonts.nix
+    ../../modules/niri.nix
+    ../../modules/shell.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = null; #indefinitely
+  boot.loader.timeout = null; # indefinitely
 
   networking.hostName = "nixos-pc"; # Define your hostname.
 
@@ -43,11 +48,9 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
   # Enable the GNOME Desktop Environment.
   # services.displayManager.gdm.enable = true;
   # services.desktopManager.gnome.enable = true;
-  
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
@@ -63,27 +66,30 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-   users.users.kaarlo = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" ]; 
-     packages = with pkgs; [
-       tree
-     ];
-   };
+  users.users.kaarlo = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    packages = with pkgs; [
+      tree
+    ];
+  };
 
   programs.firefox.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     niri
-     xdg-desktop-portal
-     xdg-desktop-portal-wlr
-     kitty
-     zsh
-   ];
+  environment.systemPackages = with pkgs; [
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    niri
+    xdg-desktop-portal
+    xdg-desktop-portal-wlr
+    kitty
+    zsh
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -127,7 +133,8 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
-  # TODO move this into modules etc. for it to be composable
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }
-

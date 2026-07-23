@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
-    # toolchains and LSPs
+    # toolchains and LSPs TODO move elsewhere
     rustup # rust-analyzer managed by rustup
 
     gcc
@@ -33,14 +33,19 @@
     ripgrep
 
   ];
+  programs.pi-coding-agent = {
+    enable = true;
+  };
 
   programs.git = {
     enable = true;
-    userName = "Kaarlo Kirvelä";
-    userEmail = "kkirvela@gmail.com";
+    settings = {
+      user.name = "Kaarlo Kirvelä";
+      user.email = "kkirvela@gmail.com";
+    };
   };
 
-  programs.gh.enable = true;
+  programs.gh.enable = true; # for git auth
   programs.neovim = {
     enable = true;
     waylandSupport = true;
