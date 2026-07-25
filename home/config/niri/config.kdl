@@ -121,7 +121,7 @@ layout {
     //   together with the previously focused column.
     center-focused-column "never"
 
-    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    // You can customize the widths that "switch-preset-column-width" (Mod+A) toggles between.
     preset-column-widths {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
         // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
@@ -134,7 +134,7 @@ layout {
         // fixed 1920
     }
 
-    // You can also customize the heights that "switch-preset-window-height" (Mod+Ctrl+Shift+R) toggles between.
+    // You can also customize the heights that "switch-preset-window-height" (Mod+Ctrl+Shift+A) toggles between.
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
@@ -260,6 +260,7 @@ layout {
         // top 64
         // bottom 64
     }
+    // background-color "#000000"
 }
 
 // Add lines like this to spawn processes at startup.
@@ -298,7 +299,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // https://niri-wm.github.io/niri/Configuration:-Animations
 animations {
     // Uncomment to turn off all animations.
-    off
+    // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
@@ -309,7 +310,6 @@ animations {
 // https://niri-wm.github.io/niri/Configuration:-Window-Rules
 
 window-rule {
-    match app-id="kitty"
     draw-border-with-background false
 }
 
@@ -346,6 +346,13 @@ window-rule {
     clip-to-geometry true
 }
 
+
+// layer-rule {
+    // match namespace="^wallpaper$"
+
+    // place-within-backdrop true
+// }
+
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -365,6 +372,8 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+P hotkey-overlay-title="Open powermenu" { spawn-sh "echo \"powermenu\" > /tmp/quickshell-overlay-cmd"; }
+    Mod+R hotkey-overlay-title="Open launcher" { spawn-sh "echo \"launcher\" > /tmp/quickshell-overlay-cmd"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -551,12 +560,12 @@ binds {
     Mod+Period { expel-window-from-column; }
 
     // Cycle through widths set in preset-column-widths.
-    Mod+R { switch-preset-column-width; }
+    Mod+A { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.
-    Mod+Shift+R { switch-preset-column-width-back; }
+    Mod+Shift+A { switch-preset-column-width-back; }
 
-    Mod+Ctrl+Shift+R { switch-preset-window-height; }
-    Mod+Ctrl+R { reset-window-height; }
+    Mod+Ctrl+Shift+A { switch-preset-window-height; }
+    Mod+Ctrl+A { reset-window-height; }
 
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
@@ -633,6 +642,9 @@ binds {
 }
 
 cursor {
+    xcursor-theme "Adwaita"
+
+    hide-when-typing
     hide-after-inactive-ms 1500
 }
 

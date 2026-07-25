@@ -6,6 +6,7 @@ local options = {
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
     nix = { "nixfmt" },
+    qml = { "qmlformat" },
   },
 
   format_on_save = {

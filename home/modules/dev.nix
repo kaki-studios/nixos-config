@@ -32,10 +32,9 @@
     # other stuff
     ripgrep
 
+    inputs.quickshell.packages.${pkgs.system}.default
+    kdePackages.qtdeclarative
   ];
-  programs.pi-coding-agent = {
-    enable = true;
-  };
 
   programs.git = {
     enable = true;
@@ -85,6 +84,7 @@
       cursor_blink_interval = 0;
       background = "#11111B";
       selection_foreground = "#11111B";
+      dynamic_background_opacity = "no";
     };
     shellIntegration = {
       mode = "no-cursor";

@@ -1,0 +1,48 @@
+{
+  "providers": {
+    "general-compute": {
+      "baseUrl": "https://api.generalcompute.com/v1",
+      "api": "openai-completions",
+      "apiKey": "!pass keys/generalcompute",
+      "compat": {
+        "supportsUsageInStreaming": false,
+        "maxTokensField": "max_tokens"
+      },
+      "models": [
+        {
+          "id": "minimax-m2.7",
+          "name": "Minimax M2.7",
+          "contextWindow": 160000,
+          "cost": {
+            "input": 0.4,
+            "output": 2.34,
+            "cacheRead": 0.0,
+            "cacheWrite": 0.0
+          }
+        },
+        {
+          "id": "deepseek-v3.2",
+          "name": "Deepseek V3.2",
+          "contextWindow": 32000,
+          "cost": {
+            "input": 3.0,
+            "output": 4.5,
+            "cacheRead": 0.0,
+            "cacheWrite": 0.0
+          }
+        },
+        {
+          "id": "deepseek-v3.1",
+          "name": "Deepseek V3.1",
+          "contextWindow": 128000,
+          "cost": {
+            "input": 3.0,
+            "output": 4.5,
+            "cacheRead": 0.0,
+            "cacheWrite": 0.0
+          }
+        }
+      ]
+    }
+  }
+}

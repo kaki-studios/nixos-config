@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   services.awww.enable = true;
 
@@ -15,5 +15,11 @@
       package = pkgs.catppuccin-gtk;
       name = "catppuccin-mocha-blue-standard+default";
     };
+
+  };
+  qt = {
+    enable = true;
+    kvantum.enable = true;
+    style.name = "kvantum";
   };
 }

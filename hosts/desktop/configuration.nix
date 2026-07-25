@@ -22,7 +22,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = null; # indefinitely
+  boot.loader.timeout = 5;
 
   networking.hostName = "nixos-pc"; # Define your hostname.
 

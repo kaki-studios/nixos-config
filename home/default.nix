@@ -8,6 +8,7 @@
     ./modules/wm.nix
     ./modules/tmux.nix
     ./modules/misc.nix
+    ./modules/pi-agent.nix
   ];
 
   home.stateVersion = "26.05";

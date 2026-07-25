@@ -1,0 +1,28 @@
+{
+  "lastChangelogVersion": "0.80.10",
+  "defaultProvider": "general-compute",
+  "defaultModel": "minimax-m2.7",
+  "defaultThinkingLevel": "high",
+  "theme": "catppuccin-mocha",
+  "quietStartup": false,
+  "hideThinkingBlock": false,
+  "enableInstallTelemetry": false,
+  "packages": [
+    "npm:pi-permission-system",
+    "npm:pi-subagents",
+    "npm:pi-simplify",
+    "npm:@aliou/pi-guardrails",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-btw",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:pi-footer",
+    "npm:pi-web-access",
+    "npm:pi-notify",
+    "git:github.com/DietrichGebert/ponytail",
+    "npm:@ff-labs/pi-fff"
+  ],
+  "editorPaddingX": 1,
+  "terminal": {
+    "showTerminalProgress": true
+  }
+}
