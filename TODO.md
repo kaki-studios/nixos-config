@@ -1,0 +1,2 @@
+- [ ] Migrate laptop also to nixos
+- [ ] Add notification daemon to quickshell
