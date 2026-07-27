@@ -2,23 +2,29 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/fonts.nix
-      ../../modules/niri.nix
-      ../../modules/shell.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/fonts.nix
+    ../../modules/niri.nix
+    ../../modules/shell.nix
+    ../../modules/tailscale.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = null; # indefinitely
 
-   networking.hostName = "nixos-laptop"; # Define your hostname.
+  networking.hostName = "nixos-laptop"; # Define your hostname.
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
@@ -41,11 +47,9 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
   # Enable the GNOME Desktop Environment.
   # services.displayManager.gdm.enable = true;
   # services.desktopManager.gnome.enable = true;
-  
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
@@ -66,15 +70,14 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kaarlo = {
     isNormalUser = true;
-    extraGroups = [ 
-       "wheel"
-       "networkmanager"
+    extraGroups = [
+      "wheel"
+      "networkmanager"
     ];
     packages = with pkgs; [
       tree
     ];
   };
-    
 
   programs.firefox.enable = true;
 
@@ -89,7 +92,6 @@
     kitty
     zsh
   ];
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -138,4 +140,3 @@
     "flakes"
   ];
 }
-
