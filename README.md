@@ -4,13 +4,14 @@ Flake-based NixOS setup for my machines.
 
 ## Structure
 
-- `hosts/` — machine-specific configurations
-- `modules/` — shared NixOS modules
-- `home/` — home-manager user config
+- `hosts/` - machine-specific configurations
+- `modules/` - shared NixOS modules
+- `home/` - home-manager user config
 
 ## Hosts
 
-- **desktop** — main workstation
+- **desktop** - main workstation
+- **laptop** - laptop with windows dual-boot
 
 ## Management
 

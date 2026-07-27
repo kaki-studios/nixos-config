@@ -5,6 +5,7 @@
     autoEnable = true;
     accent = "blue";
     flavor = "mocha";
+    nvim.enable = false;
   };
   programs.gpg.enable = true;
   programs.password-store = {

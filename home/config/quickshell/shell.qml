@@ -77,9 +77,9 @@ ShellRoot {
             RowLayout {
                 id: leftSection
                 anchors.left: parent.left
-                anchors.leftMargin: 8
+                anchors.leftMargin: 15
                 anchors.verticalCenter: parent.verticalCenter
-                spacing: 5
+                spacing: 10
                 ListModel {
                     id: wsModel
                 }
@@ -91,7 +91,7 @@ ShellRoot {
                         color: active ? "#b4befe" : "#6c7086"
                         font {
                             family: "JetBrainsMono Nerd Font"
-                            pixelSize: 16
+                            pixelSize: 18
                         }
                         MouseArea {
                             anchors.fill: parent
@@ -140,81 +140,89 @@ ShellRoot {
             RowLayout {
                 id: rightSection
                 anchors.right: parent.right
-                anchors.rightMargin: 8
+                anchors.rightMargin: 15
                 anchors.verticalCenter: parent.verticalCenter
-                spacing: 5
-                // leftPadding: 10
-                //TODO change icon based on status (primaryConnection?.devices[0])
-                Text {
-                    id: networkIcon
-                    text: {
-                        var devs = Networking.devices.values;
-                        for (var i = 0; i < devs.length; i++) {
-                            var dev = devs[i];
-                            if (dev.connected) {
-                                if (dev.type === 1)
-                                    return "󰖩";
-                                if (dev.type === 2)
-                                    return "󰈀";
-                                return dev.name || "󰖟";
+                spacing: 10
+
+                RowLayout {
+                    id: networkLayout
+                    spacing: 5
+
+                    Text {
+                        id: networkIcon
+                        text: {
+                            var devs = Networking.devices.values;
+                            for (var i = 0; i < devs.length; i++) {
+                                var dev = devs[i];
+                                if (dev.connected) {
+                                    if (dev.type === 1)
+                                        return "󰖩";
+                                    if (dev.type === 2)
+                                        return "󰈀";
+                                    return dev.name || "󰖟";
+                                }
                             }
+                            return "offline";
                         }
-                        return "offline";
+                        color: "#b4befe"
+                        font {
+                            family: "JetBrainsMono Nerd Font"
+                            pixelSize: 16
+                        }
                     }
-                    color: "#b4befe"
-                    font {
-                        family: "JetBrainsMono Nerd Font"
-                        pixelSize: 16
-                    }
-                }
-                Text {
-                    id: networkName
-                    text: {
-                        var devs = Networking.devices.values;
-                        for (var i = 0; i < devs.length; i++) {
-                            var dev = devs[i];
-                            if (dev.connected) {
-                                return dev.name;
+                    Text {
+                        id: networkName
+                        text: {
+                            var devs = Networking.devices.values;
+                            for (var i = 0; i < devs.length; i++) {
+                                var dev = devs[i];
+                                if (dev.connected) {
+                                    return dev.name;
+                                }
                             }
+                            return "offline";
                         }
-                        return "offline";
-                    }
-                    color: "#cdd6f4"
-                    font {
-                        family: "JetBrainsMono Nerd Font"
-                        pixelSize: 12
+                        color: "#cdd6f4"
+                        font {
+                            family: "JetBrainsMono Nerd Font"
+                            pixelSize: 12
+                        }
                     }
                 }
 
                 Rectangle {
                     width: 1
-                    height: 16
+                    height: 40
                     color: "#6c7086"
                 }
+                RowLayout {
+                    id: volumeLayout
+                    spacing: 5
+                    Text {
+                        id: volumeText
+                        text: Pipewire.defaultAudioSink ? Math.round(Pipewire.defaultAudioSink.audio.volume * 100) + "%" : "0%"
+                        color: "#cdd6f4"
+                        font {
+                            family: "JetBrainsMono Nerd Font"
+                            pixelSize: 16
+                        }
+                    }
+                    Text {
+                        id: volumeIcon
+                        text: {
+                            let vol = Pipewire.defaultAudioSink ? Math.round(Pipewire.defaultAudioSink.audio.volume * 100) : 0;
+                            let volumeIcons = ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]; // 8 icons
+                            return volumeIcons[Math.floor((vol * 8 / 101))];
+                            // return Math.round(vol / 12.5);
+                        }
+                        color: "#b4befe"
+                        font {
+                            family: "JetBrainsMono Nerd Font"
+                            pixelSize: 16
+                        }
+                    }
+                }
 
-                Text {
-                    id: volumeText
-                    text: Pipewire.defaultAudioSink ? Math.round(Pipewire.defaultAudioSink.audio.volume * 100) + "%" : "0%"
-                    color: "#cdd6f4"
-                    font {
-                        family: "JetBrainsMono Nerd Font"
-                        pixelSize: 16
-                    }
-                }
-                Text {
-                    id: volumeIcon
-                    text: {
-                        let vol = Pipewire.defaultAudioSink ? Math.round(Pipewire.defaultAudioSink.audio.volume * 100) : 0;
-                        let volumeIcons = ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]; // 8 icons
-                        return volumeIcons[Math.floor((vol * 8 / 101))];
-                        // return Math.round(vol / 12.5);
-                    }
-                    color: "#b4befe"
-                    font {
-                        family: "JetBrainsMono Nerd Font"
-                        pixelSize: 16
-                    }
-                }
                 // Text {
                 // text: "power"
                 // color: "#6c7086"
