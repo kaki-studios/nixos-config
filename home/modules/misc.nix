@@ -19,4 +19,8 @@
     gtk.enable = true;
     x11.enable = true;
   };
+  programs.browserpass = {
+    enable = true;
+    browsers = [ "firefox" ];
+  };
 }
