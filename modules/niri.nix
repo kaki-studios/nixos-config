@@ -5,6 +5,12 @@
   ...
 }:
 {
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+    accent = "blue";
+    flavor = "mocha";
+  };
   catppuccin.sddm = {
     enable = true;
   };
