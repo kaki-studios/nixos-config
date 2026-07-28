@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -26,7 +27,7 @@ PanelWindow {
         onClicked: root.visible = false
     }
 
-    Rectangle {
+    WrapperRectangle {
         anchors.fill: parent
         color: "#1e1e2e"
 
@@ -42,7 +43,7 @@ PanelWindow {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 2
+            anchors.margins: 3 // dunno why
             spacing: 0
 
             // Search bar

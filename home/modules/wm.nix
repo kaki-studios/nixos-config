@@ -21,6 +21,7 @@
       name = "Catppuccin-GTK-Dark";
     };
   };
+
   qt = {
     enable = true;
     kvantum.enable = true;
