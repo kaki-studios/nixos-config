@@ -18,12 +18,14 @@
     ../../modules/niri.nix
     ../../modules/shell.nix
     ../../modules/tailscale.nix
+    ../../modules/gc.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = null; # indefinitely
+  boot.loader.systemd-boot.configurationLimit = 5;
 
   networking.hostName = "nixos-pc"; # Define your hostname.
 
