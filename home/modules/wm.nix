@@ -17,10 +17,9 @@
       size = 10;
     };
     theme = {
-      package = pkgs.catppuccin-gtk;
-      name = "catppuccin-mocha-blue-standard+default";
+      package = pkgs.magnetic-catppuccin-gtk;
+      name = "Catppuccin-GTK-Dark";
     };
-
   };
   qt = {
     enable = true;

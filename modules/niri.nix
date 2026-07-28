@@ -8,7 +8,7 @@
   catppuccin = {
     enable = true;
     autoEnable = true;
-    accent = "blue";
+    accent = "mauve";
     flavor = "mocha";
   };
   catppuccin.sddm = {

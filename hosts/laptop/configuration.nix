@@ -18,6 +18,7 @@
     ../../modules/shell.nix
     ../../modules/tailscale.nix
     ../../modules/gc.nix
+    ../../modules/bluetooth.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
