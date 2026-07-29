@@ -338,7 +338,6 @@ ShellRoot {
                             focused: false
                         });
                     }
-                    console.log("HERE: " + JSON.stringify(groups));
 
                     // Mark active workspaces
                     for (const output in outputs) {
@@ -372,7 +371,6 @@ ShellRoot {
                                 // niri.outputs = ({});
                                 for (const ws of event.WorkspacesChanged.workspaces) {
                                     niri.workspaces[ws.id] = ws;
-                                    console.log(JSON.stringify(ws));
                                     if (!(ws.output in niri.outputs)) {
                                         niri.outputs[ws.output] = {
                                             activeWorkspace: null
@@ -396,27 +394,46 @@ ShellRoot {
                                 break;
                             }
                             const res = niri.workspaceGroups();
-                            console.log("workspaces" + JSON.stringify(niri.workspaces));
-                            console.log("outputs" + JSON.stringify(niri.outputs));
-                            console.log("groups: " + JSON.stringify(res));
                             niri.groups = res;
                         }
                     }
                 }
             }
 
+            Scope {
+                id: backlightMonitor
+                property int currectBrightness: {
+                    const max = parseInt(maxBrightnessFile.text().trim());
+                    return max === 0 ? 0 : Math.round((parseInt(brightnessFile.text()) / max) * 100);
+                }
+                property int actualBrightness: parseInt(brightnessFile.text())
+                property int maxBrightness: parseInt(maxBrightnessFile.text())
+                readonly property string backlightPath: "/sys/class/backlight/intel_backlight/actual_brightness"
+                readonly property string maxBrightnessPath: "/sys/class/backlight/intel_backlight/max_brightness"
+
+                FileView {
+                    id: brightnessFile
+                    path: backlightMonitor.backlightPath
+                }
+                FileView {
+                    id: maxBrightnessFile
+                    path: backlightMonitor.maxBrightnessPath
+                    blockLoading: true
+                }
+            }
+
             Process { // TODO don't run if not available
                 id: brightnessProc
-                command: ["sh", "-c", "brightnessctl -m"]
-                property int lastExitCode: -1
-                onExited: (exitCode, exitStatus) => {
-                    lastExitCode = exitCode;
-                }
-                stdout: StdioCollector {
-                    onStreamFinished: {
-                        var items = this.text.split(",");
-                        var text = items[3];
-                        backlightText.text = text;
+                command: ["udevadm", "monitor", "--udev", "--subsystem=backlight"]
+                // property int lastExitCode: -1
+                // onExited: (exitCode, exitStatus) => {
+                // lastExitCode = exitCode;
+                // }
+                stdout: SplitParser {
+                    onRead: line => {
+                        backlightText.text = backlightMonitor.currectBrightness + "%";
+                        if (line.includes("change"))
+                            brightnessFile.reload();
                     }
                 }
             }
@@ -424,16 +441,6 @@ ShellRoot {
             Component.onCompleted: {
                 niriWorkspacesProc.running = true;
                 brightnessProc.running = true;
-            }
-
-            Timer {
-                interval: 1000
-                running: true
-                repeat: true
-                onTriggered: {
-                    if (brightnessProc.lastExitCode == 0) //only if it's working correctly
-                        brightnessProc.running = true;
-                }
             }
         }
     }
