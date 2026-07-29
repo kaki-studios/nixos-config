@@ -23,4 +23,15 @@
     enable = true;
     browsers = [ "firefox" ];
   };
+  # services.spotifyd = {
+  # enable = true;
+  # settings =
+  # {
+  # global = {
+  # username = "Alex";
+  # password = ;
+  # };
+  # }
+  # ;
+  # };
 }

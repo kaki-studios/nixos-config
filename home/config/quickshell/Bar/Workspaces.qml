@@ -13,7 +13,6 @@ Item {
             id: workspaceRepeater
             model: niri.groups
             delegate: Row {
-                height: 40
                 spacing: 10
 
                 Repeater {
