@@ -78,7 +78,7 @@ ShellRoot {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 10
                     Workspaces {}
-                    //TODO mpris
+                    Mpris {}
                 }
                 Clock {
                     anchors.centerIn: parent
