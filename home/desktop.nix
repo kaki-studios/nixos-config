@@ -5,9 +5,6 @@
   ...
 }:
 {
-  home.packages = with pkgs; [
-    brightnessctl
-  ];
 
   xdg.configFile."quickshell" = {
     source = ./config/quickshell;
