@@ -98,28 +98,34 @@ ShellRoot {
                     }
 
                     Repeater {
-                        model: wsModel
+                        id: workspaceRepeater
+                        model: niri.groups
                         delegate: Row {
                             height: 40
                             spacing: 10
-                            Loader {
-                                active: insertSeparator
-                                sourceComponent: separatorComponent
-                            }
 
-                            Text {
-                                text: active ? "" : ""
-                                color: active ? "#b4befe" : "#6c7086"
-                                anchors.verticalCenter: parent.verticalCenter
-                                font {
-                                    family: "JetBrainsMono Nerd Font"
-                                    pixelSize: 18
+                            Repeater {
+                                model: modelData.workspaces
+                                delegate: Text {
+                                    text: modelData.active ? "" : ""
+                                    color: modelData.focused ? "#b4befe" : "#6c7086"
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    font {
+                                        family: "JetBrainsMono Nerd Font"
+                                        pixelSize: 18
+                                    }
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: Qt.openUrlExternally("niri:workspace:" + modelData.id)
+                                    }
                                 }
-                                MouseArea {
-                                    anchors.fill: parent
-                                    cursorShape: Qt.PointingHandCursor
-                                    onClicked: Qt.openUrlExternally("niri:workspace:" + num)
-                                }
+                            }
+                            Rectangle {
+                                visible: index < niri.groups.length - 1
+                                width: 1
+                                height: 40
+                                color: "#6c7086"
                             }
                         }
                     }
@@ -309,35 +315,91 @@ ShellRoot {
                 color: "#6c7086"
             }
 
-            Process {
-                id: niriWorkspacesProc
-                command: ["sh", "-c", "niri msg workspaces"]
-                stdout: StdioCollector {
-                    onStreamFinished: {
-                        var lines = this.text.split("\n");
-                        var monitorCount = 0;
-                        var insertSeparatorNext = false;
-                        wsModel.clear();
-                        for (var i = 0; i < lines.length; i++) {
-                            var line = lines[i];
+            Singleton {
+                id: niri
+                property var workspaces: ({}) //workspaceId to workspace object
+                property var outputs: ({}) //outputs to activeWorkspace
+                property var groups: [] //final product
+                property int focusedId
+                function workspaceGroups() {
+                    let groups = {};
+
+                    // Group workspaces by output
+                    for (const id in workspaces) {
+                        const ws = workspaces[id];
+
+                        if (!groups[ws.output])
+                            groups[ws.output] = [];
+
+                        groups[ws.output].push({
+                            id: ws.id,
+                            idx: ws.idx,
+                            active: false,
+                            focused: false
+                        });
+                    }
+                    console.log("HERE: " + JSON.stringify(groups));
+
+                    // Mark active workspaces
+                    for (const output in outputs) {
+                        const activeId = outputs[output].activeWorkspace;
+
+                        if (!groups[output])
+                            continue;
+                        for (const ws of groups[output]) {
+                            ws.active = ws.id === activeId;
+                            ws.focused = ws.id === focusedId;
+                        }
+                    }
+
+                    // Convert object -> array for Repeater
+                    return Object.keys(groups).map(output => ({
+                                output: output,
+                                workspaces: groups[output].sort((a, b) => a.idx - b.idx)
+                            }));
+                }
+                Process {
+                    id: niriWorkspacesProc
+                    command: ["sh", "-c", "niri msg --json event-stream"]
+                    stdout: SplitParser {
+                        onRead: line => {
                             if (!line.trim())
-                                continue;
-                            if (line.indexOf("Output") >= 0) {
-                                monitorCount++;
-                                insertSeparatorNext = true;
-                                continue;
+                                return;
+                            const event = JSON.parse(line);
+                            switch (Object.keys(event)[0]) {
+                            case "WorkspacesChanged": //we rebuild the data structure
+                                // niri.workspaces = ({});
+                                // niri.outputs = ({});
+                                for (const ws of event.WorkspacesChanged.workspaces) {
+                                    niri.workspaces[ws.id] = ws;
+                                    console.log(JSON.stringify(ws));
+                                    if (!(ws.output in niri.outputs)) {
+                                        niri.outputs[ws.output] = {
+                                            activeWorkspace: null
+                                        };
+                                    }
+                                    if (ws.is_active) {
+                                        niri.outputs[ws.output].activeWorkspace = ws.id;
+                                    }
+                                    if (ws.is_focused) {
+                                        niri.focusedId = ws.id;
+                                    }
+                                }
+                                break;
+                            case "WorkspaceActivated":
+                                let ws = niri.workspaces[event.WorkspaceActivated.id];
+                                if (event.WorkspaceActivated.focused)
+                                    niri.focusedId = event.WorkspaceActivated.id;
+                                if (ws) {
+                                    niri.outputs[ws.output].activeWorkspace = ws.id;
+                                }
+                                break;
                             }
-                            var active = line.indexOf("*") >= 0;
-                            var num = parseInt(line.replace(/[*\s]/g, "")); // NOTE doesn't support named workspaces
-                            if (!isNaN(num)) {
-                                var separator = (monitorCount > 1) && insertSeparatorNext;
-                                wsModel.append({
-                                    insertSeparator: separator,
-                                    num: num,
-                                    active: active
-                                });
-                            }
-                            insertSeparatorNext = false;
+                            const res = niri.workspaceGroups();
+                            console.log("workspaces" + JSON.stringify(niri.workspaces));
+                            console.log("outputs" + JSON.stringify(niri.outputs));
+                            console.log("groups: " + JSON.stringify(res));
+                            niri.groups = res;
                         }
                     }
                 }
@@ -369,7 +431,6 @@ ShellRoot {
                 running: true
                 repeat: true
                 onTriggered: {
-                    niriWorkspacesProc.running = true;
                     if (brightnessProc.lastExitCode == 0) //only if it's working correctly
                         brightnessProc.running = true;
                 }
