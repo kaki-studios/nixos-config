@@ -367,8 +367,9 @@ ShellRoot {
                             const event = JSON.parse(line);
                             switch (Object.keys(event)[0]) {
                             case "WorkspacesChanged": //we rebuild the data structure
-                                // niri.workspaces = ({});
-                                // niri.outputs = ({});
+                                niri.workspaces = ({});
+                                niri.outputs = ({});
+                                niri.groups = [];
                                 for (const ws of event.WorkspacesChanged.workspaces) {
                                     niri.workspaces[ws.id] = ws;
                                     if (!(ws.output in niri.outputs)) {
