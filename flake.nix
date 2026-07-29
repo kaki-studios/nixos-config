@@ -68,6 +68,7 @@
               home-manager.users.kaarlo = {
                 imports = [
                   ./home/default.nix
+                  ./home/dekstop.nix
                   catppuccin.homeModules.catppuccin
                 ];
               };

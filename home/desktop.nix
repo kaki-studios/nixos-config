@@ -5,9 +5,6 @@
   ...
 }:
 {
-  imports = [
-    ./modules/bluetooth.nix
-  ];
   home.packages = with pkgs; [
     brightnessctl
   ];
@@ -27,7 +24,7 @@
     Service = {
       ExecStart = "${
         inputs.quickshell.packages.${pkgs.system}.default
-      }/bin/quickshell -p /home/kaarlo/.config/quickshell/laptop.qml"; # prob shouldn't hardcode but whatever
+      }/bin/quickshell -p /home/kaarlo/.config/quickshell/desktop.qml";
       Restart = "on-failure";
       RestartSec = 2;
     };
