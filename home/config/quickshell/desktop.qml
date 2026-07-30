@@ -92,9 +92,8 @@ ShellRoot {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 10
                     NotificationPopup {}
-                    Separator {}
-                    Network {}
 
+                    Network {}
                     Separator {}
 
                     Volume {}
