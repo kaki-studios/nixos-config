@@ -2,7 +2,7 @@
 - [ ] Add notification daemon to quickshell
 - [ ] fprintd for laptop
 - [ ] Secrets manager other than pass (e.g. sops-nix)
-- [ ] Spotifyd and find a nice client
+- [X] Spotify client
 
 QOL:
 - [ ] Stylix

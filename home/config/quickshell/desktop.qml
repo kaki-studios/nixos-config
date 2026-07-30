@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Networking
 import "Bar"
+import "Notifications"
 
 ShellRoot {
 
@@ -90,6 +91,8 @@ ShellRoot {
                     anchors.rightMargin: 15
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 10
+                    NotificationPopup {}
+                    Separator {}
                     Network {}
 
                     Separator {}
