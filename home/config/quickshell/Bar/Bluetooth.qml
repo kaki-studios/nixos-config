@@ -3,11 +3,13 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
-RowLayout {
+Row {
     spacing: 5
     // property BluetoothAdapter adapter: Bluetooth.defaultAdapter
 
     Text {
+
+        anchors.verticalCenter: parent.verticalCenter
         text: {
             const adapter = Bluetooth.defaultAdapter;
             if (!adapter.enabled) {
@@ -31,6 +33,7 @@ RowLayout {
         }
     }
     Text {
+        anchors.verticalCenter: parent.verticalCenter
         text: {
             const adapter = Bluetooth.defaultAdapter;
             if (!adapter.enabled) {
@@ -59,7 +62,7 @@ RowLayout {
 
     MouseArea {
         visible: false
-        // anchors.fill: parent
+        anchors.fill: parent
         acceptedButtons: Qt.LeftButton
         onClicked: {
             console.log("here");
@@ -68,8 +71,8 @@ RowLayout {
     }
 
     MouseArea {
-        // anchors.fill: parent
         visible: false
+        anchors.fill: parent
         acceptedButtons: Qt.RightButton
         onClicked: {
             const adapter = Bluetooth.defaultAdapter;
