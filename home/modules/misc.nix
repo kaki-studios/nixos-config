@@ -11,6 +11,9 @@
   programs.password-store = {
     enable = true;
   };
+  home.packages = [
+    pkgs.playerctl
+  ];
 
   home.pointerCursor = {
     enable = true;
