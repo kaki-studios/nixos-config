@@ -13,6 +13,7 @@ Item {
             id: workspaceRepeater
             model: niri.groups
             delegate: Row {
+                anchors.verticalCenter: parent.verticalCenter
                 spacing: 10
 
                 Repeater {

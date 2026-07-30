@@ -32,6 +32,7 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
+  nixpkgs.config.allowUnfree = true; # for spicetiy/spotify
 
   # Set your time zone.
   time.timeZone = "Europe/Helsinki";

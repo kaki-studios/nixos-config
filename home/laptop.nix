@@ -5,6 +5,7 @@
   ...
 }:
 {
+  #only laptop specific home stuff, everything else in default.nix
   imports = [
     ./modules/bluetooth.nix
   ];

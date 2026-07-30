@@ -9,6 +9,7 @@
     ./modules/tmux.nix
     ./modules/misc.nix
     ./modules/pi-agent.nix
+    ./modules/spicetify.nix
   ];
 
   home.stateVersion = "26.05";
