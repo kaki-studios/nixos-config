@@ -5,10 +5,8 @@ import QtQuick.Layouts
 
 Row {
     spacing: 5
-    // property BluetoothAdapter adapter: Bluetooth.defaultAdapter
 
     Text {
-
         anchors.verticalCenter: parent.verticalCenter
         text: {
             const adapter = Bluetooth.defaultAdapter;
@@ -61,7 +59,6 @@ Row {
     }
 
     MouseArea {
-        visible: false
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton
         onClicked: {
@@ -71,7 +68,6 @@ Row {
     }
 
     MouseArea {
-        visible: false
         anchors.fill: parent
         acceptedButtons: Qt.RightButton
         onClicked: {
