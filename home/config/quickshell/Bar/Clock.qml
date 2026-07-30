@@ -9,6 +9,9 @@ Item {
         precision: SystemClock.Minutes
     }
 
+    // Region {
+    // intersection: Intersection.Subtract
+    // item: Text {
     Text {
         id: clockText
         anchors.centerIn: parent
@@ -20,4 +23,5 @@ Item {
             weight: Font.Bold
         }
     }
+    // }
 }

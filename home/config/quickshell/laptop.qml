@@ -80,7 +80,6 @@ ShellRoot {
                     spacing: 10
                     Workspaces {}
                     Mpris {}
-                    //TODO mpris
                 }
                 Clock {
                     anchors.centerIn: parent
@@ -95,6 +94,9 @@ ShellRoot {
                     NotificationPopup {}
 
                     Network {}
+                    Separator {}
+
+                    Bluetooth {}
                     Separator {}
 
                     Backlight {}

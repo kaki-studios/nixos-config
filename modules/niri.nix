@@ -18,10 +18,6 @@
     enable = true;
     wayland.enable = true;
   };
-  environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
-  ];
-
   services.displayManager.sessionPackages = [
     pkgs.niri
   ];

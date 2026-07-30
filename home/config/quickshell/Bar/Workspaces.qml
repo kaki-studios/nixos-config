@@ -1,5 +1,5 @@
+pragma ComponentBehavior: Bound
 import QtQuick
-import Quickshell
 import Quickshell.Io
 
 Item {
@@ -14,11 +14,14 @@ Item {
             model: niri.groups
             delegate: Row {
                 anchors.verticalCenter: parent.verticalCenter
+                required property var modelData
+                required property int index
                 spacing: 10
 
                 Repeater {
-                    model: modelData.workspaces
+                    model: parent.modelData.workspaces
                     delegate: Text {
+                        required property var modelData
                         text: modelData.active ? "" : ""
                         color: modelData.focused ? "#b4befe" : "#6c7086"
                         anchors.verticalCenter: parent.verticalCenter
@@ -29,12 +32,12 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: Qt.openUrlExternally("niri:workspace:" + modelData.id)
+                            onClicked: Qt.openUrlExternally("niri:workspace:" + parent.modelData.id)
                         }
                     }
                 }
                 Separator {
-                    visible: index < niri.groups.length - 1
+                    visible: parent.index < niri.groups.length - 1
                 }
             }
         }
@@ -81,7 +84,7 @@ Item {
             }
         }
     }
-    Singleton {
+    QtObject {
         id: niri
         property var workspaces: ({}) //workspaceId to workspace object
         property var outputs: ({}) //outputs to activeWorkspace
