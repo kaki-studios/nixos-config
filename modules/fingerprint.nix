@@ -19,6 +19,7 @@
   security.pam.services.swaylock.fprintAuth = true;
   security.pam.services.login.fprintAuth = true;
   security.pam.services.sddm.fprintAuth = true;
-  security.pam.services.polkit-1.fprintAuth = true;
+  security.pam.services.polkit.fprintAuth = true;
+  security.pam.services.login.enableGnomeKeyring = true; # see https://wiki.nixos.org/wiki/Secret_Service#Auto-decrypt_on_login
 
 }
