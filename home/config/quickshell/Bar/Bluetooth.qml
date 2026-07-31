@@ -3,58 +3,62 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
-Row {
-    spacing: 5
+Item {
+    implicitHeight: bluetoothLayout.implicitHeight
+    implicitWidth: bluetoothLayout.implicitWidth
 
-    Text {
-        anchors.verticalCenter: parent.verticalCenter
-        text: {
-            const adapter = Bluetooth.defaultAdapter;
-            if (!adapter.enabled) {
+    RowLayout {
+        id: bluetoothLayout
+        spacing: 5
+        Text {
+            text: {
+                const adapter = Bluetooth.defaultAdapter;
+                if (!adapter.enabled) {
+                    return "";
+                }
+                if (adapter.devices.values) {
+                    if (adapter.devices.values[0].connected) {
+                        return adapter.devices.values[0].name;
+                    }
+                    if (adapter.devices.values[0].state == BluetoothDeviceState.Connecting) {
+                        return adapter.devices.values[0].name;
+                    }
+                    return adapter.devices.values[0].name;
+                }
                 return "";
             }
-            if (adapter.devices.values) {
-                if (adapter.devices.values[0].connected) {
-                    return adapter.devices.values[0].name;
-                }
-                if (adapter.devices.values[0].state == BluetoothDeviceState.Connecting) {
-                    return adapter.devices.values[0].name;
-                }
-                return adapter.devices.values[0].name;
+            color: "#cdd6f4"
+            font {
+                family: "JetBrainsMono Nerd Font"
+                pixelSize: 14
             }
-            return "";
         }
-        color: "#cdd6f4"
-        font {
-            family: "JetBrainsMono Nerd Font"
-            pixelSize: 14
-        }
-    }
-    Text {
-        anchors.verticalCenter: parent.verticalCenter
-        text: {
-            const adapter = Bluetooth.defaultAdapter;
-            if (!adapter.enabled) {
-                return "󰂲";
-            }
-            if (adapter.devices.values) {
-                if (adapter.devices.values[0].connected) {
-                    return "󰂯";
+        Text {
+            anchors.verticalCenter: parent.verticalCenter
+            text: {
+                const adapter = Bluetooth.defaultAdapter;
+                if (!adapter || !adapter.enabled) {
+                    return "󰂲";
                 }
-                if (adapter.devices.values[0].state == BluetoothDeviceState.Connecting) {
+                if (adapter.devices.values) {
+                    if (adapter.devices.values[0].connected) {
+                        return "󰂯";
+                    }
+                    if (adapter.devices.values[0].state == BluetoothDeviceState.Connecting) {
+                        return "󰂱";
+                    }
+                    return "󰂲";
+                }
+                if (adapter.discovering) {
                     return "󰂱";
                 }
-                return "󰂲";
+                return "";
             }
-            if (adapter.discovering) {
-                return "󰂱";
+            color: "#b4befe"
+            font {
+                family: "JetBrainsMono Nerd Font"
+                pixelSize: 18
             }
-            return "";
-        }
-        color: "#b4befe"
-        font {
-            family: "JetBrainsMono Nerd Font"
-            pixelSize: 18
         }
     }
 
@@ -72,6 +76,7 @@ Row {
         acceptedButtons: Qt.RightButton
         onClicked: {
             const adapter = Bluetooth.defaultAdapter;
+            console.log(Bluetooth.adapters.values.length);
             for (const device of adapter.devices.values) {
                 device.connected = !device.connected;
             }
