@@ -17,12 +17,6 @@ Item {
                     return "";
                 }
                 if (adapter.devices.values) {
-                    if (adapter.devices.values[0].connected) {
-                        return adapter.devices.values[0].name;
-                    }
-                    if (adapter.devices.values[0].state == BluetoothDeviceState.Connecting) {
-                        return adapter.devices.values[0].name;
-                    }
                     return adapter.devices.values[0].name;
                 }
                 return "";
@@ -34,17 +28,17 @@ Item {
             }
         }
         Text {
-            anchors.verticalCenter: parent.verticalCenter
             text: {
                 const adapter = Bluetooth.defaultAdapter;
                 if (!adapter || !adapter.enabled) {
                     return "󰂲";
                 }
                 if (adapter.devices.values) {
-                    if (adapter.devices.values[0].connected) {
+                    const device = adapter.devices.values[0];
+                    if (device.connected) {
                         return "󰂯";
                     }
-                    if (adapter.devices.values[0].state == BluetoothDeviceState.Connecting) {
+                    if (device.state == BluetoothDeviceState.Connecting || device.state == BluetoothDeviceState.Disconnecting) {
                         return "󰂱";
                     }
                     return "󰂲";

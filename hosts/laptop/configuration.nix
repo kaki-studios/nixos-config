@@ -19,7 +19,9 @@
     ../../modules/tailscale.nix
     ../../modules/gc.nix
     ../../modules/bluetooth.nix
+    ../../modules/fingerprint.nix
     ../../modules/upower.nix
+    ../../modules/power-profiles.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -93,6 +93,8 @@ ShellRoot {
                     spacing: 10
                     NotificationPopup {}
 
+                    PowerProfiles {}
+                    Separator {}
                     Network {}
                     Separator {}
 
