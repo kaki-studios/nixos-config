@@ -75,7 +75,7 @@ Scope {
                         color: root.theme.bgBase
                         border.color: modelData.urgency === NotificationUrgency.Critical ? root.theme.urgencyCritical : modelData.urgency === NotificationUrgency.Low ? root.theme.urgencyLow : root.theme.bgBorder
                         border.width: 1
-                        clip: true
+                        clip: false
 
                         Accessible.role: Accessible.StaticText
                         Accessible.name: (modelData.urgency === NotificationUrgency.Critical ? "[Critical] " : modelData.urgency === NotificationUrgency.Low ? "[Low] " : "") + (modelData.appName || "Notification") + ": " + modelData.summary
