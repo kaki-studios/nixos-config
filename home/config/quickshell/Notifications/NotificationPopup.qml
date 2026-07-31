@@ -95,16 +95,6 @@ Scope {
                         }
                         Component.onCompleted: entryAnim.start()
 
-                        Rectangle {
-                            width: 3
-                            height: parent.height - 16
-                            // radius: 2
-                            anchors.left: parent.left
-                            anchors.leftMargin: 6
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: notifCard.modelData.urgency === NotificationUrgency.Critical ? root.theme.urgencyCritical : notifCard.modelData.urgency === NotificationUrgency.Low ? root.theme.urgencyLow : root.theme.urgencyNormal
-                        }
-
                         ColumnLayout {
                             id: cardContent
                             anchors.fill: parent
