@@ -23,7 +23,7 @@ RowLayout {
         color: "#b4befe"
         font {
             family: "JetBrainsMono Nerd Font"
-            pixelSize: 18
+            pixelSize: 16
         }
     }
 }

@@ -436,7 +436,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+D { spawn "power-profile-cycle"; } //wont work on desktop but it's ok
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+P hotkey-overlay-title="Open powermenu" { spawn-sh "echo \"powermenu\" > /tmp/quickshell-overlay-cmd"; }
     Mod+R hotkey-overlay-title="Open launcher" { spawn-sh "echo \"launcher\" > /tmp/quickshell-overlay-cmd"; }

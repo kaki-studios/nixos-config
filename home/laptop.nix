@@ -6,9 +6,18 @@
 }:
 {
   #only laptop specific home stuff, everything else in default.nix
+
   services.mpris-proxy.enable = true;
-  home.packages = with pkgs; [
-    brightnessctl
+  home.packages = [
+    pkgs.brightnessctl
+    (pkgs.writeShellApplication {
+      name = "power-profile-cycle";
+      runtimeInputs = with pkgs; [
+        power-profiles-daemon
+        libnotify
+      ];
+      text = builtins.readFile ./scripts/power-profile-cycle.sh;
+    })
   ];
 
   xdg.configFile."quickshell" = {
