@@ -93,6 +93,9 @@ ShellRoot {
                     spacing: 10
                     NotificationPopup {}
 
+                    KeyboardLayout {}
+                    Separator {}
+
                     Network {}
                     Separator {}
 
