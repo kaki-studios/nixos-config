@@ -21,9 +21,10 @@
   };
   services.pass-secret-service.enable = true;
 
-  home.packages = [
-    pkgs.playerctl
-    pkgs.libnotify
+  home.packages = with pkgs; [
+    playerctl
+    libnotify
+    wl-clipboard
   ];
 
   home.pointerCursor = {

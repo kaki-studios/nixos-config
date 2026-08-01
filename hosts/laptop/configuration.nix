@@ -34,6 +34,11 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ]; # i had weird dns issues this fixed them TODO maybe add to desktop too (make a module)
+
   nixpkgs.config.allowUnfree = true; # for spicetiy/spotify
 
   # Set your time zone.
