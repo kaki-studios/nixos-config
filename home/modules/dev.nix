@@ -5,8 +5,9 @@
     # toolchains and LSPs TODO move elsewhere
     rustup # rust-analyzer managed by rustup
 
-    gcc
+    # gcc
     clang-tools
+    clang
     gdb
     # lldb
     vscode-extensions.vadimcn.vscode-lldb # provides codelldb

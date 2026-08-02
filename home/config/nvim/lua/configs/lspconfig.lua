@@ -52,7 +52,7 @@ local servers = {
       "clangd",
       "--background-index",
       "--compile-commands-dir=build",
-      "--query-driver=/usr/bin/clang++",
+      "--query-driver=/etc/profiles/per-user/kaarlo/bin/clang",
     },
     filetypes = { "c", "cpp", "h", "hpp" },
   },
