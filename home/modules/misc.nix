@@ -25,6 +25,8 @@
     playerctl
     libnotify
     wl-clipboard
+    qbittorrent
+    mpv
   ];
 
   home.pointerCursor = {
