@@ -20,7 +20,7 @@
 
   qt = {
     enable = true;
-    kvantum.enable = true;
+    # kvantum.enable = true;
     style.name = "kvantum";
   };
 }

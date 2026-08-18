@@ -32,6 +32,7 @@
 
     # other stuff
     ripgrep
+    anki # for studying
 
     inputs.quickshell.packages.${pkgs.system}.default
     kdePackages.qtdeclarative

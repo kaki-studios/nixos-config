@@ -3,9 +3,13 @@
   catppuccin = {
     enable = true;
     autoEnable = true;
-    accent = "blue";
+    accent = "mauve";
     flavor = "mocha";
     nvim.enable = false;
+  };
+  catppuccin.kvantum = {
+    apply = true;
+    enable = true;
   };
 
   programs.gpg.enable = true;
