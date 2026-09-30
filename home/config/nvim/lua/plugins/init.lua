@@ -148,6 +148,7 @@ return {
       "FelipeLema/cmp-async-path",
       "hrsh7th/cmp-nvim-lua",
       "rafamadriz/friendly-snippets",
+      "micangl/cmp-vimtex",
     },
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
