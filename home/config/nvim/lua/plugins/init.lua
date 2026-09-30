@@ -96,7 +96,12 @@ return {
     lazy = false,
     build = ":TSUpdate",
     opts = {
-      highlight = { enable = true },
+      highlight = {
+        enable = true,
+        disable = {
+          "latex", -- vimtex will do it
+        },
+      },
       indent = { enable = true },
       ensure_installed = { "vim", "lua", "vimdoc", "html", "css", "go", "rust", "zig" },
       auto_install = true,
@@ -224,6 +229,25 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()
       return require "configs.statusline"
+    end,
+  },
+
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_compiler_latexmk = {
+        options = {
+          "-pdf", -- swap for "-lualatex" if you want that engine
+          "-interaction=nonstopmode",
+          "-synctex=1",
+          "-file-line-error",
+        },
+      }
+      vim.g.vimtex_quickfix_mode = 0 -- don't auto-open the quickfix window on warnings
     end,
   },
 }

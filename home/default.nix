@@ -10,6 +10,7 @@
     ./modules/misc.nix
     ./modules/pi-agent.nix
     ./modules/spicetify.nix
+    ./modules/latex.nix
   ];
 
   home.stateVersion = "26.05";
