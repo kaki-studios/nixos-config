@@ -60,6 +60,10 @@
     source = ../config/nvim/lua;
     recursive = true;
   };
+  xdg.configFile."nvim/luasnippets" = {
+    source = ../config/nvim/luasnippets;
+    recursive = true;
+  };
   xdg.configFile."nvim/init.lua".source = ../config/nvim/init.lua;
 
   programs.zsh = {

@@ -1,7 +1,6 @@
 local ls = require "luasnip"
 local s, i = ls.snippet, ls.insert_node
 local fmta = require("luasnip.extras.fmt").fmta
-vim.g.tex_flavor = "latex"
 
 local in_math = function()
   return vim.fn["vimtex#syntax#in_mathzone"]() == 1
