@@ -155,7 +155,7 @@ return {
       ls.config.setup { enable_autosnippets = true }
       require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").lazy_load {
-        paths = vim.stdpath "config" .. "/luasnippets",
+        paths = vim.fn.stdpath "config" .. "/luasnippets",
       }
       require("cmp").setup(require "configs.cmp")
     end,
