@@ -237,18 +237,17 @@ return {
     "lervag/vimtex",
     lazy = false, -- we don't want to lazy load VimTeX
     -- tag = "v2.15", -- uncomment to pin to a specific release
+
     init = function()
+      vim.g.tex_flavor = "latex"
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_compiler_method = "latexmk"
       vim.g.vimtex_compiler_latexmk = {
-        options = {
-          "-pdf", -- swap for "-lualatex" if you want that engine
-          "-interaction=nonstopmode",
-          "-synctex=1",
-          "-file-line-error",
-        },
+        out_dir = "build", -- keeps aux files out of your notes tree
+        options = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "-file-line-error" },
       }
-      vim.g.vimtex_quickfix_mode = 0 -- don't auto-open the quickfix window on warnings
+      vim.g.vimtex_quickfix_mode = 0
+      vim.g.vimtex_syntax_conceal = { math_symbols = 1, math_delimiters = 1 }
     end,
   },
 }
