@@ -151,7 +151,12 @@ return {
       "micangl/cmp-vimtex",
     },
     config = function()
+      local ls = require "luasnip"
+      ls.config.setup { enable_autosnippets = true }
       require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_lua").lazy_load {
+        paths = vim.stdpath "config" .. "/luasnippets",
+      }
       require("cmp").setup(require "configs.cmp")
     end,
   },
