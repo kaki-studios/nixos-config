@@ -33,6 +33,7 @@
     # other stuff
     ripgrep
     anki # for studying
+    codex
 
     inputs.quickshell.packages.${pkgs.system}.default
     kdePackages.qtdeclarative
