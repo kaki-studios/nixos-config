@@ -19,7 +19,8 @@
     "npm:pi-web-access",
     "npm:pi-notify",
     "git:github.com/DietrichGebert/ponytail",
-    "npm:@ff-labs/pi-fff"
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-commandcode-provider"
   ],
   "editorPaddingX": 1,
   "terminal": {
