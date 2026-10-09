@@ -3,7 +3,15 @@
 {
   home.packages = with pkgs; [
     # toolchains and LSPs TODO move elsewhere
-    rustup # rust-analyzer managed by rustup
+    # ponytail: stable pinned via fenix flake input, follows nixpkgs so binary cache hits
+    (inputs.fenix.packages.${pkgs.system}.stable.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+      "rust-analyzer"
+    ])
 
     # gcc
     clang-tools

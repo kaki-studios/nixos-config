@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager"; # unstable cuz we need pi-agent
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     quickshell = {
@@ -24,6 +28,7 @@
     inputs@{
       nixpkgs,
       home-manager,
+      fenix,
       catppuccin,
       quickshell,
       ...
