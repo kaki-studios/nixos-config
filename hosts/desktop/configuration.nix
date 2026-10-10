@@ -14,6 +14,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/nvidia.nix
+    ../../modules/bluetooth.nix
     ../../modules/fonts.nix
     ../../modules/niri.nix
     ../../modules/shell.nix

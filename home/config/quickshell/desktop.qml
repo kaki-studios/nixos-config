@@ -99,6 +99,9 @@ ShellRoot {
                     Network {}
                     Separator {}
 
+                    Bluetooth {}
+                    Separator {}
+
                     Volume {}
                 }
             }
