@@ -6,6 +6,7 @@
 }:
 {
 
+  services.mpris-proxy.enable = true;
   xdg.configFile."quickshell" = {
     source = ./config/quickshell;
     recursive = true;
