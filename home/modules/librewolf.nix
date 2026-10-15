@@ -35,7 +35,7 @@ in
         "extensions.autoDisableScopes" = 0; # stops Nix-installed extensions from starting disabled
         "browser.fullscreen.autohide" = false;
         "browser.theme.content-theme" = 0; # dark theme
-        # "privacy.resistFingerprinting" = false;
+        "privacy.resistFingerprinting" = false;
         "browser.toolbars.bookmarks.visibility" = "never";
         "privacy.sanitize.sanitizeOnShutdown" = false;
         "browser.tabs.inTitlebar" = 0;
