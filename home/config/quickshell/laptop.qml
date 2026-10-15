@@ -79,7 +79,9 @@ ShellRoot {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 10
                     Workspaces {}
-                    Mpris {}
+                    Mpris {
+                        maxWidth: 630
+                    }
                 }
                 Clock {
                     anchors.centerIn: parent

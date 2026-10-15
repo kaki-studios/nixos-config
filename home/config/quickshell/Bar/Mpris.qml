@@ -4,6 +4,7 @@ import QtQuick
 
 Item {
     id: mprisItem
+    property int maxWidth
     function formatTime(seconds) {
         if (isNaN(seconds) || seconds < 0)
             seconds = 0;
@@ -15,7 +16,7 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         Row {
             id: contentRow
-            width: 630
+            width: mprisItem.maxWidth
             clip: true
             spacing: 10
 
