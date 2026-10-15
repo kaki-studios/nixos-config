@@ -5,7 +5,7 @@
     autoEnable = true;
     accent = "mauve";
     flavor = "mocha";
-    nvim.enable = false;
+    nvim.enable = false; # we set it ourselves
   };
   catppuccin.kvantum = {
     apply = true;
@@ -42,17 +42,6 @@
   };
   programs.browserpass = {
     enable = true;
-    browsers = [ "firefox" ];
+    browsers = [ "librewolf" ];
   };
-  # services.spotifyd = {
-  # enable = true;
-  # settings =
-  # {
-  # global = {
-  # username = "Alex";
-  # password = ;
-  # };
-  # }
-  # ;
-  # };
 }

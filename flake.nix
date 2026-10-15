@@ -12,6 +12,10 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     quickshell = {
@@ -31,6 +35,7 @@
       fenix,
       catppuccin,
       quickshell,
+      firefox-addons,
       ...
     }:
     {

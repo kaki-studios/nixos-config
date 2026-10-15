@@ -97,8 +97,8 @@ Item {
                     Text {
                         id: positionText
                         text: {
-                            if (parent.modelData.identity == "Mozilla firefox") {
-                                //this is because Firefox doesn't properly indicate length when seeking so we cache the length
+                            if (parent.modelData.identity == "Mozilla librewolf") {
+                                //this is because librewolf doesn't properly indicate length when seeking so we cache the length
                                 return formatTime(parent.modelData.position) + "/" + formatTime(parent.cachedDuration);
                             }
                             //normal players like spotifyd should behave normally
