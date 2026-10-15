@@ -38,6 +38,7 @@ in
         # "privacy.resistFingerprinting" = false;
         "browser.toolbars.bookmarks.visibility" = "never";
         "privacy.sanitize.sanitizeOnShutdown" = false;
+        "browser.tabs.inTitlebar" = 0;
       };
       userChrome = builtins.readFile ./userChrome.css;
       # userContent = builtins.readFile ./userContent.css;
