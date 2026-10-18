@@ -103,7 +103,7 @@ return {
         },
       },
       indent = { enable = true },
-      ensure_installed = { "vim", "lua", "vimdoc", "html", "css", "go", "rust", "zig" },
+      ensure_installed = { "vim", "lua", "vimdoc", "html", "css", "go", "rust", "zig", "haskell" },
       auto_install = true,
     },
   },
