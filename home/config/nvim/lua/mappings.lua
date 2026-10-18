@@ -123,24 +123,24 @@ end, opts)
 map("n", "gD", vim.lsp.buf.declaration, opts)
 map("n", "gd", vim.lsp.buf.definition, opts)
 map("n", "K", function()
-  vim.lsp.buf.hover { border = "rounded" }
+  vim.lsp.buf.hover { border = "single" }
 end, opts)
 map("n", "gi", vim.lsp.buf.implementation, opts)
 map("n", "<leader>ls", function()
-  vim.lsp.buf.signature_help { border = "rounded" }
+  vim.lsp.buf.signature_help { border = "single" }
 end, opts)
 map("n", "<leader>D", vim.lsp.buf.type_definition, opts)
 map("n", "<leader>ra", vim.lsp.buf.rename, opts)
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 map("n", "gr", vim.lsp.buf.references, opts)
 map("n", "<leader>f", function()
-  vim.diagnostic.open_float { border = "rounded" }
+  vim.diagnostic.open_float { border = "single" }
 end, opts)
 map("n", "[d", function()
-  vim.diagnostic.goto_prev { float = { border = "rounded" } }
+  vim.diagnostic.goto_prev { float = { border = "single" } }
 end, opts)
 map("n", "]d", function()
-  vim.diagnostic.goto_next { float = { border = "rounded" } }
+  vim.diagnostic.goto_next { float = { border = "single" } }
 end, opts)
 map("n", "<leader>q", vim.diagnostic.setloclist, opts)
 map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)

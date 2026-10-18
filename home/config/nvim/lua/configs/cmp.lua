@@ -5,11 +5,11 @@ return {
   completion = { completeopt = "menu,menuone" },
   window = {
     completion = cmp.config.window.bordered {
-      border = "rounded",
+      border = "single",
       winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
     },
     documentation = cmp.config.window.bordered {
-      border = "rounded",
+      border = "single",
       winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
     },
   },

@@ -5,7 +5,7 @@ local on_attach = function(client)
   client.server_capabilities.documentRangeFormattingProvider = false
 end
 
-local border = "rounded"
+local border = "single"
 
 vim.diagnostic.config {
   virtual_text = {
@@ -85,6 +85,14 @@ local servers = {
   qmlls = {
     cmd = { "qmlls", "-E" },
     filetypes = { "qml" },
+  },
+  hls = {
+    cmd = { "haskell-language-server-wrapper", "--lsp" },
+    filetypes = { "haskell", "lhaskell", "cabal" },
+    root_markers = { "hie.yaml", "cabal.project", "*.cabal", "stack.yaml" },
+    settings = {
+      haskell = { formattingProvider = "ormolu" },
+    },
   },
 }
 
