@@ -82,6 +82,12 @@
       # plugins = [ "git" ];
       theme = "robbyrussell";
     };
+    initContent = ''
+      nix_shell_prompt() {
+        [[ -n $IN_NIX_SHELL ]] && echo "%{$fg_bold[yellow]%}(nix)%{$reset_color%} "
+      }
+      PROMPT='$(nix_shell_prompt)'$PROMPT
+    '';
 
   };
 
