@@ -23,6 +23,8 @@
     go
     gopls
 
+    python3
+
     nil
     nixfmt
 
