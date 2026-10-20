@@ -31,6 +31,7 @@
     wl-clipboard
     qbittorrent
     mpv
+    obs-studio
   ];
 
   home.pointerCursor = {
