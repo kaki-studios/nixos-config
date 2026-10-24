@@ -91,7 +91,7 @@ Singleton {
     }
     Process {
         id: soundProcess
-        running: false
+        running: true
         command: ["/run/current-system/sw/bin/pw-play", "/run/current-system/sw/share/sounds/freedesktop/stereo/bell.oga"]
     }
 }
