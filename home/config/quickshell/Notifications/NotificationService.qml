@@ -3,6 +3,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Services.Notifications
+import Quickshell.Io
 
 Singleton {
     id: root
@@ -32,7 +33,7 @@ Singleton {
             if (!notification.appName && !notification.summary && !notification.body && !notification.image)
                 return;
 
-            Quickshell.execDetached(["/run/current-system/sw/bin/pw-play", "/run/current-system/sw/share/sounds/freedesktop/stereo/bell.oga"]);
+            soundProcess.running = true;
 
             notification.tracked = true;
 
@@ -87,5 +88,10 @@ Singleton {
                 n.destroy();
             }
         }
+    }
+    Process {
+        id: soundProcess
+        running: false
+        command: ["/run/current-system/sw/bin/pw-play", "/run/current-system/sw/share/sounds/freedesktop/stereo/bell.oga"]
     }
 }
