@@ -32,6 +32,8 @@ Singleton {
             if (!notification.appName && !notification.summary && !notification.body && !notification.image)
                 return;
 
+            Quickshell.execDetached(["/run/current-system/sw/bin/pw-play", "/run/current-system/sw/share/sounds/freedesktop/stereo/message-new-instant.oga"]);
+
             notification.tracked = true;
 
             const idStr = String(notification.id || "");
