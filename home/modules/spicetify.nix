@@ -16,8 +16,9 @@ in
       adblockify
       shuffle
     ];
-    theme = spicePkgs.themes.catppuccin;
-    colorScheme = "mocha";
+    # theme + colorScheme come from stylix (targets.spicetify); it writes a
+    # "stylix" theme whose color.ini is generated from the base16 palette.
   };
 
+  stylix.targets.spicetify.enable = true;
 }

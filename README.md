@@ -26,4 +26,4 @@ nix flake update
 ## Notes
 
 - Uses `nixos-unstable` channel
-- Home-manager with catppuccin theming
+- Home-manager with stylix theming

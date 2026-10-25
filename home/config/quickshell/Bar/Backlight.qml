@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import qs
 
 Item {
     implicitHeight: backlightLayout.implicitHeight
@@ -13,18 +14,18 @@ Item {
         Text {
             id: backlightText
             text: ""
-            color: "#cdd6f4"
+            color: Theme.textPrimary
             font {
-                family: "JetBrainsMono Nerd Font"
+                family: Theme.fontFamily
                 pixelSize: 16
             }
         }
         Text {
             id: backlightIcon
             text: "󰃠"
-            color: "#b4befe"
+            color: Theme.accentPrimary
             font {
-                family: "JetBrainsMono Nerd Font"
+                family: Theme.fontFamily
                 pixelSize: 18
             }
         }

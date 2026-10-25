@@ -29,7 +29,7 @@ PanelWindow {
 
     WrapperRectangle {
         anchors.fill: parent
-        color: "#1e1e2e"
+        color: Theme.bgBase
 
         focus: true
 
@@ -39,7 +39,7 @@ PanelWindow {
         property string query: ""
 
         border.width: 2
-        border.color: "#b4befe"
+        border.color: Theme.accentPrimary
 
         ColumnLayout {
             anchors.fill: parent
@@ -50,7 +50,7 @@ PanelWindow {
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 56
-                color: "#313244"
+                color: Theme.bgSurface
 
                 RowLayout {
                     anchors.fill: parent
@@ -67,8 +67,8 @@ PanelWindow {
                     Text {
                         text: ""
                         font.pixelSize: 20
-                        font.family: "JetBrainsMono Nerd Font"
-                        color: "#b4befe"
+                        font.family: Theme.fontFamily
+                        color: Theme.accentPrimary
                         Layout.preferredWidth: 24
                         Layout.preferredHeight: 24
                         Layout.alignment: Qt.AlignCenter
@@ -76,9 +76,9 @@ PanelWindow {
 
                     TextInput {
                         id: searchInput
-                        color: "#cdd6f4"
+                        color: Theme.textPrimary
                         font.pixelSize: 18
-                        font.family: "JetBrainsMono Nerd Font"
+                        font.family: Theme.fontFamily
                         focus: true
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter
@@ -120,7 +120,7 @@ PanelWindow {
 
                 highlightFollowsCurrentItem: true
                 highlight: Rectangle {
-                    color: "#45475a"
+                    color: Theme.bgHover
                 }
                 highlightMoveDuration: 0
 
@@ -150,10 +150,10 @@ PanelWindow {
                         }
 
                         Text {
-                            color: "#cdd6f4"
+                            color: Theme.textPrimary
                             text: modelData.name
                             font.pixelSize: 18
-                            font.family: "JetBrainsMono Nerd Font"
+                            font.family: Theme.fontFamily
                             elide: Text.ElideRight
                             anchors.verticalCenter: parent.verticalCenter
                             Layout.fillWidth: true

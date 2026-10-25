@@ -17,18 +17,6 @@
     plugins = with pkgs.tmuxPlugins; [
       sensible
 
-      {
-        plugin = catppuccin;
-        extraConfig = ''
-          set -g @catppuccin_flavour 'mocha'
-          set -g @catppuccin_status_background "none"
-          set -g @catppuccin_window_tabs_enabled on
-          set -g @catppuccin_window_text " #{b:pane_current_path}"
-          set -g @catppuccin_window_current_text " #{b:pane_current_path}"
-          set -g @catppuccin_date_time_text " %H:%M"
-        '';
-      }
-
       resurrect
 
       {
@@ -80,10 +68,13 @@
       setw -g monitor-activity off
       set -g bell-action none
 
-      # Catppuccin status line
+      # Status line: stylix's tmux target sets the base styles from the
+      # palette; this only controls layout and content.
       set -g status-left ""
       set -g status-right-length 100
-      set -g status-right "#{E:@catppuccin_status_application}#{E:@catppuccin_status_session}#{E:@catppuccin_status_date_time}"
+      set -g status-right "#S %H:%M"
+      set -g window-status-format " #{b:pane_current_path} "
+      set -g window-status-current-format " #{b:pane_current_path} "
 
       # URL picker
       bind u capture-pane \;\

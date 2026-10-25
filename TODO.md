@@ -8,5 +8,5 @@
 - [X] Spotify client
 
 QOL:
-- [ ] Stylix
+- [X] Stylix
 - [ ] Greetd + regreet

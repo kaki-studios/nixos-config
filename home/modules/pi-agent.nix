@@ -12,8 +12,5 @@
     source = ../config/pi-agent/extensions;
     recursive = true;
   };
-  home.file.".pi/agent/themes" = {
-    source = ../config/pi-agent/themes;
-    recursive = true;
-  };
+  # Themes are generated from the stylix palette in home/modules/theme.nix.
 }

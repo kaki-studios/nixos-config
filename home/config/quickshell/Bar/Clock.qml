@@ -1,5 +1,6 @@
 import Quickshell
 import QtQuick
+import qs
 
 Item {
     implicitWidth: clockText.implicitWidth
@@ -16,9 +17,9 @@ Item {
         id: clockText
         anchors.centerIn: parent
         text: Qt.formatDateTime(clock.date, "hh:mm")
-        color: "#cdd6f4"
+        color: Theme.textPrimary
         font {
-            family: "JetBrainsMono Nerd Font"
+            family: Theme.fontFamily
             pixelSize: 16
             weight: Font.Bold
         }

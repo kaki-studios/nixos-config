@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell.Io
+import qs
 
 Item {
     implicitHeight: content.implicitHeight
@@ -23,10 +24,10 @@ Item {
                     delegate: Text {
                         required property var modelData
                         text: modelData.active ? "" : ""
-                        color: modelData.focused ? "#b4befe" : "#6c7086"
+                        color: modelData.focused ? Theme.accentPrimary : Theme.textMuted
                         anchors.verticalCenter: parent.verticalCenter
                         font {
-                            family: "JetBrainsMono Nerd Font"
+                            family: Theme.fontFamily
                             pixelSize: 18
                         }
                         MouseArea {

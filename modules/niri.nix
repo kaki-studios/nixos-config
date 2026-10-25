@@ -5,15 +5,8 @@
   ...
 }:
 {
-  catppuccin = {
-    enable = true;
-    autoEnable = true;
-    accent = "mauve";
-    flavor = "mocha";
-  };
-  catppuccin.sddm = {
-    enable = true;
-  };
+  # SDDM has no stylix target (the old catppuccin.sddm theme is gone); theming
+  # it means adding regreet/greetd, which is a separate follow-up.
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;

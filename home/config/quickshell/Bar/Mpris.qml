@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 import Quickshell.Services.Mpris
 import QtQuick
+import qs
 
 Item {
     id: mprisItem
@@ -71,11 +72,11 @@ Item {
                                 return "";
                             }
                         }
-                        // color: "#6c7086"
-                        color: "#cdd6f4"
+                        // color: Theme.textMuted
+                        color: Theme.textPrimary
                         anchors.verticalCenter: parent.verticalCenter
                         font {
-                            family: "JetBrainsMono Nerd Font"
+                            family: Theme.fontFamily
                             pixelSize: 12
                         }
                         MouseArea {
@@ -87,11 +88,11 @@ Item {
                     Text {
                         id: titleText
                         text: parent.modelData.trackTitle.trim() + " - " + parent.modelData.trackArtist.trim()
-                        // color: "#6c7086"
-                        color: "#cdd6f4"
+                        // color: Theme.textMuted
+                        color: Theme.textPrimary
                         anchors.verticalCenter: parent.verticalCenter
                         font {
-                            family: "JetBrainsMono Nerd Font"
+                            family: Theme.fontFamily
                             pixelSize: 12
                         }
                     }
@@ -107,11 +108,11 @@ Item {
                         }
 
                         font {
-                            family: "JetBrainsMono Nerd Font"
+                            family: Theme.fontFamily
                             pixelSize: 12
                         }
-                        color: "#6c7086"
-                        // color: "#cdd6f4"
+                        color: Theme.textMuted
+                        // color: Theme.textPrimary
                         anchors.verticalCenter: parent.verticalCenter
                     }
                 }

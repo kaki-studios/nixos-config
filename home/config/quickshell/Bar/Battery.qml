@@ -1,6 +1,7 @@
 import QtQuick.Layouts
 import Quickshell.Services.UPower
 import QtQuick
+import qs
 
 RowLayout {
     id: batteryLayout
@@ -9,9 +10,9 @@ RowLayout {
     Text {
         id: batteryText
         text: parent.battery + "%"
-        color: "#cdd6f4"
+        color: Theme.textPrimary
         font {
-            family: "JetBrainsMono Nerd Font"
+            family: Theme.fontFamily
             pixelSize: 16
         }
     }
@@ -24,9 +25,9 @@ RowLayout {
             let batteryIcons = ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]; // 10 icons
             return batteryIcons[Math.floor(parent.battery * 10 / 101)];
         }
-        color: "#b4befe"
+        color: Theme.accentPrimary
         font {
-            family: "JetBrainsMono Nerd Font"
+            family: Theme.fontFamily
             pixelSize: 20
         }
     }

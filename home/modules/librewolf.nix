@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 let
   addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
 in
@@ -54,12 +58,22 @@ in
         "network.cookie.lifetimePolicy" = 0;
         "browser.tabs.inTitlebar" = 0;
         "identity.fxaccounts.enabled" = true;
+
+        # Fonts, reader-mode colors and (via colorTheme below) the browser
+        # chrome come from stylix.targets.librewolf.
       };
       userChrome = builtins.readFile ./userChrome.css;
-      # userContent = builtins.readFile ./userContent.css;
       userContent = builtins.readFile ./userContent.css;
     };
-
   };
 
+  # Firefox Color paints the toolbar/frame/tab/sidebar/popup colors from the
+  # palette. Firefox GNOME theme is deliberately *not* enabled: it replaces
+  # userChrome/userContent wholesale, which would undo the tab-bar hiding that
+  # sidebery relies on.
+  stylix.targets.librewolf = {
+    enable = true;
+    profileNames = [ "default" ];
+    colorTheme.enable = true;
+  };
 }

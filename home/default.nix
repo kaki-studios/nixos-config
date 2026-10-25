@@ -12,6 +12,7 @@
     ./modules/spicetify.nix
     ./modules/latex.nix
     ./modules/librewolf.nix
+    ./modules/theme.nix
   ];
 
   home.stateVersion = "26.05";

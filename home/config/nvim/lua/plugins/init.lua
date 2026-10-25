@@ -1,24 +1,39 @@
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "echasnovski/mini.nvim",
+    version = false,
     lazy = false,
     priority = 1000,
-    opts = {
-      transparent_background = true,
-      custom_highlights = function(colors)
-        return {
-          FloatBorder = { fg = colors.blue, bg = "NONE" },
-          NormalFloat = { bg = "NONE" },
-          Pmenu = { bg = "NONE" },
-          PmenuSel = { bg = colors.surface0 },
-          PmenuBorder = { fg = colors.blue, bg = "NONE" },
-        }
-      end,
-    },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme "catppuccin"
+    config = function()
+      local p = require "palette"
+
+      require("mini.base16").setup {
+        palette = {
+          base00 = "#" .. p.base00,
+          base01 = "#" .. p.base01,
+          base02 = "#" .. p.base02,
+          base03 = "#" .. p.base03,
+          base04 = "#" .. p.base04,
+          base05 = "#" .. p.base05,
+          base06 = "#" .. p.base06,
+          base07 = "#" .. p.base07,
+          base08 = "#" .. p.base08,
+          base09 = "#" .. p.base09,
+          base0A = "#" .. p.base0A,
+          base0B = "#" .. p.base0B,
+          base0C = "#" .. p.base0C,
+          base0D = "#" .. p.base0D,
+          base0E = "#" .. p.base0E,
+          base0F = "#" .. p.base0F,
+        },
+      }
+
+      vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#" .. p.base0D, bg = "NONE" })
+      vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#" .. p.base02 })
+      vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#" .. p.base0D, bg = "NONE" })
     end,
   },
 

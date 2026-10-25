@@ -2,6 +2,7 @@ import Quickshell.Bluetooth
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
+import qs
 
 Item {
     implicitHeight: bluetoothLayout.implicitHeight
@@ -21,9 +22,9 @@ Item {
                 }
                 return "";
             }
-            color: "#cdd6f4"
+            color: Theme.textPrimary
             font {
-                family: "JetBrainsMono Nerd Font"
+                family: Theme.fontFamily
                 pixelSize: 14
             }
         }
@@ -48,9 +49,9 @@ Item {
                 }
                 return "";
             }
-            color: "#b4befe"
+            color: Theme.accentPrimary
             font {
-                family: "JetBrainsMono Nerd Font"
+                family: Theme.fontFamily
                 pixelSize: 18
             }
         }

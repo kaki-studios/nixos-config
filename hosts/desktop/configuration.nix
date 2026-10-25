@@ -15,7 +15,7 @@
     ./hardware-configuration.nix
     ../../modules/nvidia.nix
     ../../modules/bluetooth.nix
-    ../../modules/fonts.nix
+    ../../modules/stylix.nix
     ../../modules/niri.nix
     ../../modules/shell.nix
     ../../modules/tailscale.nix

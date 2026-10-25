@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Io
+import qs
 
 RowLayout {
     id: keyboardLayout
@@ -13,9 +14,9 @@ RowLayout {
         text: {
             return layouts[currentLayout];
         }
-        color: "#cdd6f4"
+        color: Theme.textPrimary
         font {
-            family: "JetBrainsMono Nerd Font"
+            family: Theme.fontFamily
             pixelSize: 14
         }
     }

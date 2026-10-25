@@ -1,7 +1,8 @@
 import QtQuick
+import qs
 
 Rectangle {
     width: 1
     height: 40
-    color: "#6c7086"
+    color: Theme.textMuted
 }

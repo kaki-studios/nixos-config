@@ -1,17 +1,5 @@
 { pkgs, ... }:
 {
-  catppuccin = {
-    enable = true;
-    autoEnable = true;
-    accent = "mauve";
-    flavor = "mocha";
-    nvim.enable = false; # we set it ourselves
-  };
-  catppuccin.kvantum = {
-    apply = true;
-    enable = true;
-  };
-
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
@@ -34,13 +22,6 @@
     obs-studio
   ];
 
-  home.pointerCursor = {
-    enable = true;
-    package = pkgs.adwaita-icon-theme;
-    name = "Adwaita";
-    gtk.enable = true;
-    x11.enable = true;
-  };
   programs.browserpass = {
     enable = true;
     browsers = [ "librewolf" ];

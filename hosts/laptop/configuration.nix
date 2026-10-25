@@ -13,7 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/fonts.nix
+    ../../modules/stylix.nix
     ../../modules/niri.nix
     ../../modules/shell.nix
     ../../modules/tailscale.nix

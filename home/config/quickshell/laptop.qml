@@ -124,7 +124,7 @@ ShellRoot {
                     bottom: parent.bottom
                 }
                 height: 1
-                color: "#6c7086"
+                color: Theme.textMuted
             }
         }
     }

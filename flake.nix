@@ -16,7 +16,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     quickshell = {
       # add ?ref=<tag> to track a tag
@@ -26,6 +25,10 @@
       # Mismatched system dependencies will lead to crashes and other issues.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,9 +36,9 @@
       nixpkgs,
       home-manager,
       fenix,
-      catppuccin,
       quickshell,
       firefox-addons,
+      stylix,
       ...
     }:
     {
@@ -45,7 +48,7 @@
           modules = [
             ./hosts/laptop/configuration.nix
 
-            catppuccin.nixosModules.catppuccin
+            stylix.nixosModules.stylix
 
             home-manager.nixosModules.home-manager
             {
@@ -56,7 +59,6 @@
                 imports = [
                   ./home/default.nix
                   ./home/laptop.nix
-                  catppuccin.homeModules.catppuccin
                 ];
               };
               home-manager.backupFileExtension = "backup";
@@ -69,7 +71,7 @@
           modules = [
             ./hosts/desktop/configuration.nix
 
-            catppuccin.nixosModules.catppuccin
+            stylix.nixosModules.stylix
 
             home-manager.nixosModules.home-manager
             {
@@ -80,7 +82,6 @@
                 imports = [
                   ./home/default.nix
                   ./home/desktop.nix
-                  catppuccin.homeModules.catppuccin
                 ];
               };
               home-manager.backupFileExtension = "backup";

@@ -3,7 +3,7 @@
   "defaultProvider": "commandcode",
   "defaultModel": "deepseek/deepseek-v4.1-flash",
   "defaultThinkingLevel": "high",
-  "theme": "catppuccin-mocha",
+  "theme": "stylix",
   "quietStartup": false,
   "hideThinkingBlock": false,
   "enableInstallTelemetry": false,

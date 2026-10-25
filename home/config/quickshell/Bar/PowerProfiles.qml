@@ -1,6 +1,7 @@
 import Quickshell.Services.UPower
 import QtQuick
 import QtQuick.Layouts
+import qs
 
 RowLayout {
     id: powerProfilesLayout
@@ -20,9 +21,9 @@ RowLayout {
             }
             return "";
         }
-        color: "#b4befe"
+        color: Theme.accentPrimary
         font {
-            family: "JetBrainsMono Nerd Font"
+            family: Theme.fontFamily
             pixelSize: 16
         }
     }

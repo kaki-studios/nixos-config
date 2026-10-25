@@ -5,11 +5,12 @@ import Quickshell.Io
 import Quickshell.Services.Notifications
 import QtQuick
 import QtQuick.Layouts
+import qs
 
 Scope {
     id: root
     property var theme: DefaultTheme {}
-    property string font: "JetBrainsMono Nerd Font"
+    property string font: Theme.fontFamily
 
     IpcHandler {
         target: "notifications"

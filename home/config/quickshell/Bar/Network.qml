@@ -1,6 +1,7 @@
 import QtQuick.Layouts
 import QtQuick
 import Quickshell.Networking
+import qs
 
 RowLayout {
     id: networkLayout
@@ -17,9 +18,9 @@ RowLayout {
             }
             return "offline";
         }
-        color: "#cdd6f4"
+        color: Theme.textPrimary
         font {
-            family: "JetBrainsMono Nerd Font"
+            family: Theme.fontFamily
             pixelSize: 14
         }
     }
@@ -40,9 +41,9 @@ RowLayout {
             }
             return "offline";
         }
-        color: "#b4befe"
+        color: Theme.accentPrimary
         font {
-            family: "JetBrainsMono Nerd Font"
+            family: Theme.fontFamily
             pixelSize: 16
         }
     }

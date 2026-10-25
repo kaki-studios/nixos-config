@@ -2,6 +2,7 @@
 import Quickshell.Services.Pipewire
 import QtQuick
 import QtQuick.Layouts
+import qs
 
 Item {
     implicitHeight: volumeLayout.implicitHeight
@@ -16,9 +17,9 @@ Item {
         Text {
             id: volumeText
             text: Pipewire.defaultAudioSink ? Math.round(Pipewire.defaultAudioSink.audio.volume * 100) + "%" : "0%"
-            color: "#cdd6f4"
+            color: Theme.textPrimary
             font {
-                family: "JetBrainsMono Nerd Font"
+                family: Theme.fontFamily
                 pixelSize: 16
             }
         }
@@ -33,9 +34,9 @@ Item {
                 return volumeIcons[Math.floor((vol * 8 / 101))];
                 // return Math.round(vol / 12.5);
             }
-            color: "#b4befe"
+            color: Theme.accentPrimary
             font {
-                family: "JetBrainsMono Nerd Font"
+                family: Theme.fontFamily
                 pixelSize: 16
             }
         }

@@ -23,27 +23,27 @@ PanelWindow {
         id: powerModel
         ListElement {
             icon: "󰌾"
-            accent: "#b4befe"
+            accentRole: "primary"
             action: "lock"
         }
         ListElement {
             icon: "󰒲"
-            accent: "#b4befe"
+            accentRole: "primary"
             action: "sleep"
         }
         ListElement {
             icon: "󰍃"
-            accent: "#b4befe"
+            accentRole: "primary"
             action: "logout"
         }
         ListElement {
             icon: "󰜉"
-            accent: "#a6e3a1"
+            accentRole: "green"
             action: "reboot"
         }
         ListElement {
             icon: ""
-            accent: "#f38ba8"
+            accentRole: "red"
             action: "shutdown"
         }
     }
@@ -57,9 +57,9 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: "#1e1e2e"
+        color: Theme.bgBase
         border.width: 2
-        border.color: "#b4befe"
+        border.color: Theme.accentPrimary
 
         GridView {
             id: grid
@@ -83,12 +83,12 @@ PanelWindow {
                 // height: buttonSize + 10
                 color: "transparent"
                 border.width: 2
-                border.color: "#cdd6f4"
+                border.color: Theme.textPrimary
                 z: 10
             }
 
             // highlight: Rectangle {
-            // color: "#45475a"
+            // color: Theme.bgHover
             // }
             highlightMoveDuration: 0
             highlightFollowsCurrentItem: true
@@ -100,7 +100,9 @@ PanelWindow {
                     width: buttonSize - 8
                     height: buttonSize - 8
                     icon: model.icon
-                    accentColor: model.accent
+                    accentColor: model.accentRole === "green" ? Theme.accentGreen
+                        : model.accentRole === "red" ? Theme.accentRed
+                        : Theme.accentPrimary
                     onClicked: executeAction(model.action)
                 }
             }
