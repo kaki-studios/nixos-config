@@ -1,10 +1,23 @@
 {
   pkgs,
+  config,
+  lib,
   inputs,
   ...
 }:
 let
   addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
+
+  colors = config.lib.stylix.colors;
+
+  # Mirrors `mkColor` from stylix's modules/firefox/each-config.nix: the
+  # generated Firefox Color theme reads the *derived* "<role>-rgb-*" keys,
+  # not the bare "baseXX" ones.
+  mkColor = role: {
+    r = colors."${role}-rgb-r";
+    g = colors."${role}-rgb-g";
+    b = colors."${role}-rgb-b";
+  };
 in
 {
   programs.librewolf = {
@@ -62,6 +75,31 @@ in
         # Fonts, reader-mode colors and (via colorTheme below) the browser
         # chrome come from stylix.targets.librewolf.
       };
+
+      # Palette-role tweaks on top of the theme stylix generates. Labelled by
+      # role (base0N) rather than hex, so they follow whatever
+      # stylix.base16Scheme is set to.
+      #
+      # mkForce is required: stylix already assigns these leaves, and the
+      # JSON submodule errors out on a duplicate definition instead of
+      # preferring the later one.
+      extensions.settings."FirefoxColor@mozilla.com".settings.theme.colors = {
+        # Selected-tab outline. Drives --tab-border-color-selected (native
+        # tabs) and Sidebery's --s-act-el-border ring, which normally paint
+        # from base0D (the loud accent). base03 is the scheme's muted
+        # neutral — tab borders, and Sidebery's accent, calm down with it.
+        #
+        # Note: tab_background_separator is NOT the knob for this. It maps to
+        # --lwt-background-tab-separator-color, which has zero consumers in
+        # LibreWolf 158/156, so setting it is a no-op.
+        tab_line = lib.mkForce (mkColor "base03");
+
+        # urlbar autocomplete highlighted row (--urlbarview-background-
+        # color-selected). stylix picks base04, which is a light surface on a
+        # dark scheme; base02 darkens it while base05 text stays readable.
+        popup_highlight = lib.mkForce (mkColor "base02");
+      };
+
       userChrome = builtins.readFile ./userChrome.css;
       userContent = builtins.readFile ./userContent.css;
     };

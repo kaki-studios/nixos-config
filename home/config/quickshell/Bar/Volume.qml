@@ -27,17 +27,17 @@ Item {
             id: volumeIcon
             text: {
                 if (Pipewire.defaultAudioSink.audio.muted) {
-                    return "";
+                    return "󰝟";
                 }
                 let vol = Pipewire.defaultAudioSink ? Math.round(Pipewire.defaultAudioSink.audio.volume * 100) : 0;
-                let volumeIcons = ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]; // 8 icons
+                let volumeIcons = ["󰕿", "󰖀", "󰖀", "󰖀", "󰖀", "󰕾", "󰕾", "󰕾"]; // 8 icons
                 return volumeIcons[Math.floor((vol * 8 / 101))];
                 // return Math.round(vol / 12.5);
             }
             color: Theme.accentPrimary
             font {
                 family: Theme.fontFamily
-                pixelSize: 16
+                pixelSize: volumeIcon.text == "󰕿" ? 17 : 25 // The no volume icon displays a bit weird...
             }
         }
     }

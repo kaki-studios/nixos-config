@@ -44,7 +44,7 @@ RowLayout {
         color: Theme.accentPrimary
         font {
             family: Theme.fontFamily
-            pixelSize: 16
+            pixelSize: 20
         }
     }
 }

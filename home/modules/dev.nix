@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   home.packages = with pkgs; [
@@ -62,6 +62,11 @@
     enable = true;
     waylandSupport = true;
     defaultEditor = true;
+    # stylix's neovim target appends its colorscheme config to programs.neovim.initLua,
+    # which home-manager writes to $XDG_CONFIG_HOME/nvim/init.lua — the same path
+    # dev.nix links the hand-written init.lua to. Sideloading loads that generated
+    # config through a wrapper --cmd instead, so the hand-written init.lua survives.
+    sideloadInitLua = true;
   };
   # why don't we just include the whole nvim directory?
   # because we want lazylock.json to remain writable, which is in the nvim directory
@@ -75,7 +80,12 @@
     source = ../config/nvim/luasnippets;
     recursive = true;
   };
-  xdg.configFile."nvim/init.lua".source = ../config/nvim/init.lua;
+  # programs.neovim with sideloadInitLua sets this same path to enable = false,
+  # so without mkForce the hand-written init.lua is dropped from the generation.
+  xdg.configFile."nvim/init.lua" = {
+    source = ../config/nvim/init.lua;
+    enable = lib.mkForce true;
+  };
 
   programs.zsh = {
     enable = true;

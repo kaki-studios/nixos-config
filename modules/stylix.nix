@@ -3,7 +3,7 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
 
     # Opt-in only: targets are enabled individually here and in
     # home/modules/wm.nix, so apps with hand-written config that stylix would
@@ -37,7 +37,7 @@
 
     # Wallpaper: used for the awww background (home/modules/wm.nix) and passed
     # straight to swaylock, which needs no separate copy.
-    image = ../home/config/wallpaper/wallpaper.png;
+    image = ../home/config/wallpaper/wallpaper_space.jpg;
 
     # Replaces catppuccin.gtk's Papirus-Dark icon theme.
     icons = {
@@ -59,6 +59,7 @@
       qt.enable = true; # qt5ct/qt6ct + kvantum for system-wide Qt apps
       fontconfig.enable = true;
       font-packages.enable = true;
+      console.enable = true;
     };
 
     # Inherited by home-manager; kitty's target turns this into

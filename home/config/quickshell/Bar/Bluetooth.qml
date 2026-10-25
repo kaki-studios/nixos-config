@@ -52,7 +52,7 @@ Item {
             color: Theme.accentPrimary
             font {
                 family: Theme.fontFamily
-                pixelSize: 18
+                pixelSize: 20
             }
         }
     }

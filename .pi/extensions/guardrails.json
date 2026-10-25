@@ -5,6 +5,10 @@
       {
         "kind": "file",
         "path": "/tmp"
+      },
+      {
+        "kind": "file",
+        "path": "~/.librewolf"
       }
     ]
   },

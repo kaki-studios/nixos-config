@@ -28,7 +28,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                         font {
                             family: Theme.fontFamily
-                            pixelSize: 18
+                            pixelSize: 25
                         }
                         MouseArea {
                             anchors.fill: parent

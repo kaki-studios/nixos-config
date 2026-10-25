@@ -44,7 +44,22 @@ in
     qt.enable = true;
     kitty.enable = true;
     tmux.enable = true;
+    anki.enable = true;
     zathura.enable = true;
+    mpv.enable = true;
+
+    # The gutter (line numbers + sign column) is a full-height strip; with
+    # kitty's background_opacity the rest of the window is translucent, so an
+    # opaque gutter reads as a brighter band. Let the palette background
+    # through instead.
+    neovim = {
+      enable = true;
+      transparentBackground = {
+        main = true;
+        numberLine = true;
+        signColumn = true;
+      };
+    };
     # Image + palette for the lock surface; the image is stylix.image, the same
     # wallpaper awww draws below.
     swaylock.enable = true;
