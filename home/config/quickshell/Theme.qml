@@ -25,7 +25,7 @@ Singleton {
     property color bgSelected: color("base02")
     property color bgBorder: color("base0D")
 
-    property color textPrimary: color("base05")
+    property color textPrimary: color("base07")
     property color textSecondary: color("base04")
     property color textMuted: color("base03")
 
