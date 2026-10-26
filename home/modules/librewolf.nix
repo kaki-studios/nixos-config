@@ -93,11 +93,13 @@ in
         # --lwt-background-tab-separator-color, which has zero consumers in
         # LibreWolf 158/156, so setting it is a no-op.
         tab_line = lib.mkForce (mkColor "base03");
+        sidebar_border = lib.mkForce (mkColor "base03");
 
         # urlbar autocomplete highlighted row (--urlbarview-background-
         # color-selected). stylix picks base04, which is a light surface on a
         # dark scheme; base02 darkens it while base05 text stays readable.
         popup_highlight = lib.mkForce (mkColor "base02");
+
       };
 
       userChrome = builtins.readFile ./userChrome.css;
