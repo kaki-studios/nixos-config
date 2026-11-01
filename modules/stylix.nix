@@ -60,6 +60,35 @@
       fontconfig.enable = true;
       font-packages.enable = true;
       console.enable = true;
+
+      # extraCss is appended after the generated palette, so these rules win
+      # over the GTK theme's radii without needing !important.
+      regreet = {
+        enable = true;
+        extraCss = ''
+          window,
+          window.background,
+          frame,
+          button,
+          entry,
+          spinbutton,
+          dropdown,
+          popover,
+          popover > contents,
+          menu,
+          menuitem,
+          list,
+          row,
+          headerbar,
+          tooltip,
+          check,
+          radio,
+          switch,
+          progressbar,
+          scrollbar,
+          scrollbar > range > trough > slider { border-radius: 0; }
+        '';
+      };
     };
 
     # Inherited by home-manager; kitty's target turns this into
