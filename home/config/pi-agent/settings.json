@@ -2,7 +2,7 @@
   "lastChangelogVersion": "0.80.10",
   "defaultProvider": "commandcode",
   "defaultModel": "deepseek/deepseek-v4.1-flash",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "max",
   "theme": "stylix",
   "quietStartup": false,
   "hideThinkingBlock": false,
