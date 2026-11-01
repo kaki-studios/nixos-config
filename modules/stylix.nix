@@ -62,31 +62,12 @@
       console.enable = true;
 
       # extraCss is appended after the generated palette, so these rules win
-      # over the GTK theme's radii without needing !important.
+      # over the GTK theme's radii. GTK4's CSS parser has no `!important`
+      # support: it reports "Junk at end of value" and drops the declaration.
       regreet = {
         enable = true;
         extraCss = ''
-          window,
-          window.background,
-          frame,
-          button,
-          entry,
-          spinbutton,
-          dropdown,
-          popover,
-          popover > contents,
-          menu,
-          menuitem,
-          list,
-          row,
-          headerbar,
-          tooltip,
-          check,
-          radio,
-          switch,
-          progressbar,
-          scrollbar,
-          scrollbar > range > trough > slider { border-radius: 0; }
+          * { border-radius: 0; }
         '';
       };
     };

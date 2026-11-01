@@ -7,7 +7,7 @@
 - [X] fprintd for laptop
 - [ ] Secrets manager other than pass (e.g. sops-nix or agenix)
 - [X] Spotify client
-- [ ] Proper firefox theming
+- [X] Proper firefox theming
 # QOL:
 - [X] Stylix
-- [ ] Greetd + regreet
+- [X] Greetd + regreet
