@@ -49,6 +49,16 @@ in
       extensions.force = true;
 
       settings = {
+        # stylix derives font.size.monospace from stylix.fonts.sizes.terminal
+        # (15), which is tuned for kitty and lands on 20px here — dwarfing the
+        # 13px proportional text. Pin monospace to the applications size
+        # instead, using stylix's own pt->px conversion. mkForce is required
+        # because stylix already defines this leaf and the JSON type does not
+        # merge; see the note on the Firefox Color overrides below.
+        "font.size.monospace.x-western" = lib.mkForce (
+          builtins.floor ((config.stylix.fonts.sizes.applications * 4.0 / 3.0) + 0.5)
+        );
+
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # needed for userChrome/userContent
         "extensions.autoDisableScopes" = 0; # stops Nix-installed extensions from starting disabled
         "browser.fullscreen.autohide" = false;

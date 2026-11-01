@@ -1,4 +1,9 @@
-{ pkgs, inputs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -43,6 +48,7 @@
     # other stuff
     ripgrep
     anki # for studying
+    miniflux
     codex
 
     inputs.quickshell.packages.${pkgs.system}.default
