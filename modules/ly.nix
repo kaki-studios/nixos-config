@@ -84,15 +84,12 @@ let
         error_fg = lyColorHex 1 "base08"; # bold red
         full_color = true;
 
-        animation = "matrix";
+        # animation = "matrix";
         # 0 = run forever. The animation is painted only while Ly waits for
         # input, so it stops on its own once a session is picked.
-        animation_timeout_sec = 0;
+        # animation_timeout_sec = 0;
 
-        # Conway's Life, tinted with the palette's green so it reads as part of
-        # the theme rather than an unrelated screensaver. Entropy keeps the
-        # board from settling into a dead, static state.
-        cmatrix_fg = lyColorHex 0 "base0B";
+        # cmatrix_fg = lyColorHex 0 "base0B";
         # gameoflife_frame_delay = 6;
         # gameoflife_entropy_interval = 10;
         # gameoflife_initial_density = 0.4;
