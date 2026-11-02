@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     ../../modules/stylix.nix
     ../../modules/niri.nix
+    ../../modules/ly.nix
     ../../modules/shell.nix
     ../../modules/tailscale.nix
     ../../modules/gc.nix

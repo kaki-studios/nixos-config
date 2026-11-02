@@ -61,15 +61,10 @@
       font-packages.enable = true;
       console.enable = true;
 
-      # extraCss is appended after the generated palette, so these rules win
-      # over the GTK theme's radii. GTK4's CSS parser has no `!important`
-      # support: it reports "Junk at end of value" and drops the declaration.
-      regreet = {
-        enable = true;
-        extraCss = ''
-          * { border-radius: 0; }
-        '';
-      };
+      # Consumed by modules/ly.nix for the login screen on tty1 (kmscon inside
+      # the display-manager unit) and by services.kmscon for tty2-6. Also sets
+      # `services.kmscon.config.font-name`, which needs fontconfig above.
+      kmscon.enable = true;
     };
 
     # Inherited by home-manager; kitty's target turns this into

@@ -10,4 +10,4 @@
 - [X] Proper firefox theming
 # QOL:
 - [X] Stylix
-- [X] Greetd + regreet
+- [X] Ly display manager on kmscon (replaces greetd + ReGreet)

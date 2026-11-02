@@ -1,0 +1,43 @@
+diff --git a/src/main.zig b/src/main.zig
+index bb19ef9..52bb196 100644
+--- a/src/main.zig
++++ b/src/main.zig
+@@ -503,12 +503,14 @@ pub fn main(init: std.process.Init) !void {
+         );
+     }
+ 
++    // Same ioctl restriction as above: with kmscon on stdin the LED state
++    // cannot be read, so do not arm the indicator at all.
+     state.numlock_label = Label.init(
+         "",
+         null,
+         state.buffer.fg,
+         state.buffer.bg,
+-        &updateNumlock,
++        if (state.use_kmscon_vt) null else &updateNumlock,
+         null,
+     );
+     defer state.numlock_label.deinit();
+@@ -518,7 +520,7 @@ pub fn main(init: std.process.Init) !void {
+         null,
+         state.buffer.fg,
+         state.buffer.bg,
+-        &updateCapslock,
++        if (state.use_kmscon_vt) null else &updateCapslock,
+         null,
+     );
+     defer state.capslock_label.deinit();
+@@ -681,7 +683,12 @@ pub fn main(init: std.process.Init) !void {
+         );
+     }
+ 
+-    interop.setNumlock(state.config.numlock) catch |err| {
++    // The keyboard LEDs are queried and set with KDGKBLED/KDSKBLED on stdin,
++    // which only works while stdin is a kernel VT. Under --use-kmscon-vt stdin
++    // is kmscon's pty, so both ioctls fail with ENOTTY and kmscon (which owns
++    // the keyboard) is the one that has to report the LED state. Skip the
++    // ioctls instead of putting "failed to set numlock" on the info line.
++    if (!state.use_kmscon_vt) interop.setNumlock(state.config.numlock) catch |err| {
+         try state.info_line.addMessage(
+             state.lang.err_numlock,
+             state.config.error_bg,

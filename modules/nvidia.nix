@@ -9,6 +9,11 @@
     "nvidia-drm.modeset=1"
     "nvidia-drm.fbdev=1"
   ];
+  boot.initrd.kernelModules = [
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_drm"
+  ];
   hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
