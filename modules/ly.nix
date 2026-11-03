@@ -70,52 +70,52 @@ let
       );
   };
 
-  lyConfig = pkgs.writeText "ly-config.ini" (
-    lib.generators.toINIWithGlobalSection { } {
-      globalSection = {
-        # 0x00000000 means "terminal default", which libtsm resolves from the
-        # kmscon palette (base05 on base00) instead of a hardcoded colour.
-        fg = "0x00000000";
-        bg = "0x00000000";
-        error_bg = "0x00000000";
+  # lyConfig = pkgs.writeText "ly-config.ini" (
+  # lib.generators.toINIWithGlobalSection { } {
+  # globalSection = {
+  # # 0x00000000 means "terminal default", which libtsm resolves from the
+  # # kmscon palette (base05 on base00) instead of a hardcoded colour.
+  # fg = "0x00000000";
+  # bg = "0x00000000";
+  # error_bg = "0x00000000";
 
-        # The rest is rendered as truecolor, so it needs an explicit value.
-        border_fg = lyColorHex 0 "base0D"; # stylix's accent
-        error_fg = lyColorHex 1 "base08"; # bold red
-        full_color = true;
+  # # The rest is rendered as truecolor, so it needs an explicit value.
+  # border_fg = lyColorHex 0 "base0D"; # stylix's accent
+  # error_fg = lyColorHex 1 "base08"; # bold red
+  # full_color = true;
 
-        # animation = "matrix";
-        # 0 = run forever. The animation is painted only while Ly waits for
-        # input, so it stops on its own once a session is picked.
-        # animation_timeout_sec = 0;
+  # # animation = "matrix";
+  # # 0 = run forever. The animation is painted only while Ly waits for
+  # # input, so it stops on its own once a session is picked.
+  # # animation_timeout_sec = 0;
 
-        # cmatrix_fg = lyColorHex 0 "base0B";
-        # gameoflife_frame_delay = 6;
-        # gameoflife_entropy_interval = 10;
-        # gameoflife_initial_density = 0.4;
+  # # cmatrix_fg = lyColorHex 0 "base0B";
+  # # gameoflife_frame_delay = 6;
+  # # gameoflife_entropy_interval = 10;
+  # # gameoflife_initial_density = 0.4;
 
-        clear_password = true;
+  # clear_password = true;
 
-        # Sessions: these mirror what the nixpkgs Ly module passes through, but
-        # are fixed here because that module is not what starts Ly.
-        service_name = "ly";
-        path = "/run/current-system/sw/bin";
-        setup_cmd = config.services.displayManager.sessionData.wrapper;
-        waylandsessions = "${config.services.displayManager.sessionData.desktops}/share/wayland-sessions";
-        xsessions = "${config.services.displayManager.sessionData.desktops}/share/xsessions";
-        session_log = ".local/state/ly-session.log";
+  # # Sessions: these mirror what the nixpkgs Ly module passes through, but
+  # # are fixed here because that module is not what starts Ly.
+  # service_name = "ly";
+  # path = "/run/current-system/sw/bin";
+  # setup_cmd = config.services.displayManager.sessionData.wrapper;
+  # waylandsessions = "${config.services.displayManager.sessionData.desktops}/share/wayland-sessions";
+  # xsessions = "${config.services.displayManager.sessionData.desktops}/share/xsessions";
+  # session_log = ".local/state/ly-session.log";
 
-        # /etc is read-only, and Ly would log a failure on every start if it
-        # tried to keep its remembered user/session there.
-        save_file_dir = "/var/lib/ly";
+  # # /etc is read-only, and Ly would log a failure on every start if it
+  # # tried to keep its remembered user/session there.
+  # save_file_dir = "/var/lib/ly";
 
-        # Defaults point at $CONFIG_DIRECTORY/ly/startup.sh, which cannot be
-        # expanded and does not exist in the nixpkgs package.
-        start_cmd = null;
-        login_cmd = null;
-      };
-    }
-  );
+  # # Defaults point at $CONFIG_DIRECTORY/ly/startup.sh, which cannot be
+  # # expanded and does not exist in the nixpkgs package.
+  # start_cmd = null;
+  # login_cmd = null;
+  # };
+  # }
+  # );
 in
 {
   # tty2-6: themed kmscon logins instead of unthemed getty, and the module that
@@ -142,65 +142,112 @@ in
   # Ly is a display manager on tty1. `Conflicts=` mirrors the nixpkgs Ly module
   # (which uses the generic display-manager.service) so logind cannot start a
   # getty/kmscon login on top of the greeter.
-  systemd.services.display-manager = {
-    description = "Ly display manager on tty1 (inside kmscon)";
-    wantedBy = [ "graphical.target" ];
-    after = [
-      "autovt@tty1.service"
-      "dbus.service"
-      "plymouth-quit-wait.service"
-      "systemd-logind.service"
-      "systemd-user-sessions.service"
-    ];
-    requires = [ "dbus.service" ];
-    conflicts = [
-      "autovt@tty1.service"
-      "getty@tty1.service"
-      "kmsconvt@tty1.service"
-    ];
-    restartIfChanged = false;
+  # systemd.services.display-manager = {
+  # description = "Ly display manager on tty1 (inside kmscon)";
+  # wantedBy = [ "graphical.target" ];
+  # after = [
+  # "autovt@tty1.service"
+  # "dbus.service"
+  # "plymouth-quit-wait.service"
+  # "systemd-logind.service"
+  # "systemd-user-sessions.service"
+  # ];
+  # requires = [ "dbus.service" ];
+  # conflicts = [
+  # "autovt@tty1.service"
+  # "getty@tty1.service"
+  # "kmsconvt@tty1.service"
+  # ];
+  # restartIfChanged = false;
 
-    environment = {
-      # kmscon shares its environment with the commands it runs, and Ly's
-      # termbox2 needs the `kmscon` terminfo entry (libtsm is not a sun-color or
-      # xterm clone) to key-bind and colour correctly.
-      TERMINFO_DIRS = "/run/current-system/sw/share/terminfo";
-    };
+  # environment = {
+  # # kmscon shares its environment with the commands it runs, and Ly's
+  # # termbox2 needs the `kmscon` terminfo entry (libtsm is not a sun-color or
+  # # xterm clone) to key-bind and colour correctly.
+  # TERMINFO_DIRS = "/run/current-system/sw/share/terminfo";
+  # };
 
-    serviceConfig = {
-      Type = "idle";
-      ExecStart = builtins.concatStringsSep " " [
-        (lib.getExe pkgs.kmscon)
-        "--configdir ${kmsconConfigDir}"
-        "--vt=tty1"
-        "--no-switchvt"
-        # kmscon wipes the environment before exec'ing its child by default,
-        # which would drop TERMINFO_DIRS above. Ly needs it to find the
-        # `kmscon` terminfo entry.
-        "--no-reset-env"
-        "--login"
-        "--"
-        (lib.getExe ly)
-        "--use-kmscon-vt"
-      ];
+  # serviceConfig = {
+  # Type = "idle";
+  # ExecStart = builtins.concatStringsSep " " [
+  # (lib.getExe pkgs.kmscon)
+  # "--configdir ${kmsconConfigDir}"
+  # "--vt=tty1"
+  # "--no-switchvt"
+  # # kmscon wipes the environment before exec'ing its child by default,
+  # # which would drop TERMINFO_DIRS above. Ly needs it to find the
+  # # `kmscon` terminfo entry.
+  # "--no-reset-env"
+  # "--login"
+  # "--"
+  # (lib.getExe ly)
+  # "--use-kmscon-vt"
+  # ];
 
-      # Ly exits on logout; kmscon restarts it, and should kmscon itself die the
-      # unit comes back too.
-      Restart = "always";
-      RestartSec = 1;
+  # # Ly exits on logout; kmscon restarts it, and should kmscon itself die the
+  # # unit comes back too.
+  # Restart = "always";
+  # RestartSec = 1;
 
-      StandardInput = "tty";
-      StandardOutput = "tty";
-      # Boot messages and kmscon logs must not paint over the login screen.
-      StandardError = "journal";
+  # StandardInput = "tty";
+  # StandardOutput = "tty";
+  # # Boot messages and kmscon logs must not paint over the login screen.
+  # StandardError = "journal";
 
-      TTYPath = "/dev/tty1";
-      TTYReset = "yes";
-      TTYVHangup = "yes";
-      TTYVTDisallocate = "yes";
-      UtmpIdentifier = "tty1";
-      IgnoreSIGPIPE = false;
-      SendSIGHUP = true;
+  # TTYPath = "/dev/tty1";
+  # TTYReset = "yes";
+  # TTYVHangup = "yes";
+  # TTYVTDisallocate = "yes";
+  # UtmpIdentifier = "tty1";
+  # IgnoreSIGPIPE = false;
+  # SendSIGHUP = true;
+  # };
+  # };
+  services.displayManager.ly = {
+    enable = true;
+    x11Support = config.services.xserver.enable;
+    settings = {
+      # 0x00000000 means "terminal default", which libtsm resolves from the
+      # kmscon palette (base05 on base00) instead of a hardcoded colour.
+      fg = "0x00000000";
+      bg = "0x00000000";
+      error_bg = "0x00000000";
+
+      # The rest is rendered as truecolor, so it needs an explicit value.
+      border_fg = lyColorHex 0 "base0D"; # stylix's accent
+      error_fg = lyColorHex 1 "base08"; # bold red
+      full_color = true;
+
+      bigclock = "en";
+      # animation = "matrix";
+      # 0 = run forever. The animation is painted only while Ly waits for
+      # input, so it stops on its own once a session is picked.
+      # animation_timeout_sec = 0;
+
+      # cmatrix_fg = lyColorHex 0 "base0B";
+      # gameoflife_frame_delay = 6;
+      # gameoflife_entropy_interval = 10;
+      # gameoflife_initial_density = 0.4;
+
+      clear_password = true;
+
+      # Sessions: these mirror what the nixpkgs Ly module passes through, but
+      # are fixed here because that module is not what starts Ly.
+      service_name = "ly";
+      path = "/run/current-system/sw/bin";
+      setup_cmd = "${config.services.displayManager.sessionData.wrapper}";
+      waylandsessions = "${config.services.displayManager.sessionData.desktops}/share/wayland-sessions";
+      xsessions = "${config.services.displayManager.sessionData.desktops}/share/xsessions";
+      session_log = ".local/state/ly-session.log";
+
+      # /etc is read-only, and Ly would log a failure on every start if it
+      # tried to keep its remembered user/session there.
+      save_file_dir = "/var/lib/ly";
+
+      # Defaults point at $CONFIG_DIRECTORY/ly/startup.sh, which cannot be
+      # expanded and does not exist in the nixpkgs package.
+      start_cmd = null;
+      login_cmd = null;
     };
   };
 
@@ -242,8 +289,8 @@ in
     };
   };
 
-  environment.etc."ly/config.ini".source = lyConfig;
+  # environment.etc."ly/config.ini".source = lyConfig;
 
   # Keeps `ly` on PATH for the unit's ExecStart and for debugging by hand.
-  environment.systemPackages = [ ly ];
+  # environment.systemPackages = [ ly ];
 }
