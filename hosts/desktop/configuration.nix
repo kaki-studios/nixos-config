@@ -21,6 +21,7 @@
     ../../modules/shell.nix
     ../../modules/tailscale.nix
     ../../modules/gc.nix
+    ../../modules/misc.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

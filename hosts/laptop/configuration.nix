@@ -23,6 +23,7 @@
     ../../modules/fingerprint.nix
     ../../modules/upower.nix
     ../../modules/power-profiles.nix
+    ../../modules/misc.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
